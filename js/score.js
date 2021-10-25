@@ -56,10 +56,14 @@ function initiatePage() {
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	renderPagination();
+	selectRadios()
 }
 
 // refresh page to current letter, images and pagination
 function updatePage() {
+
+	selectRadios()
+
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
@@ -100,6 +104,27 @@ function renderPagination() {
 
 
 function selectRadios() {
-	
+
+	// Collect all radios
+	var allRadios = document.querySelectorAll('.all-radios')
+
+	// Create an array of results that can be null, false, or true
+	let currentResults = [Results[currentLetterPosition].start, Results[currentLetterPosition].middle, Results[currentLetterPosition].end]
+
+	// mapping to convert the currentResults into an array for the radios
+	const radioMapping = {null: [false,false],
+						true: [true, false],
+						false: [false,true]}
+
+	// map the result from the [start,middle,end] into an size 6 array of booleans 
+	// .flat() at the end converts the 3x2 array into a 6x1
+	var radioStatus = currentResults.map((result)=>{
+		return radioMapping[result]
+	}).flat()
+
+	// Select all radios based on Radio Status
+	allRadios.forEach((radio, key) =>{
+		radio.checked = radioStatus[key]
+	})
 
 }
