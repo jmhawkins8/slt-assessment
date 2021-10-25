@@ -1,51 +1,47 @@
+
+// Add new letters as needed
 const letters = ["P", "B", "T", "D", "K"];
-console.log(letters);
 
 // This number will itterate through the letters
 currentLetterPosition = 0;
 
-var Results = letters.map((value) => {
+// Create object for storing results based on the letters array
+var Results = letters.map((letter) => {
 	return {
-		letter: value,
-		begining: null,
+		letter: letter,
+		start: null,
 		middle: null,
 		end: null,
 	};
 });
 
 function initiatePage() {
-	console.log(Results);
-
+	console.log(Results)
 	// Select all radios based on vlass .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
 	// itterate through each class, and create a function that fires when clicked
 	radios.forEach((radio) => {
 		radio.onclick = function() {
-			console.log(radio.getAttribute("value"));
 			// modify Results by the value of the radio clicked
-			Results[currentLetterPosition][
-				radio.getAttribute("name")
-			] = radio.getAttribute("value");
+			Results[currentLetterPosition][radio.getAttribute("name")] = radio.getAttribute("value");
 			console.log(Results);
 		};
 	});
 
-	// Prepare letters to itterate through
+	// Creating itterations through next and previous buttons
 	document.getElementById("next-button").onclick = function() {
 		if (currentLetterPosition < letters.length - 1) {
 			currentLetterPosition++;
-			refreshPage();
+			updatePage();
 		}
-		console.log(letters[currentLetterPosition]);
 	};
 
 	document.getElementById("previous-button").onclick = function() {
 		if (currentLetterPosition > 0) {
 			currentLetterPosition--;
-			refreshPage();
+			updatePage();
 		}
-		console.log(letters[currentLetterPosition]);
 	};
 
 	// Ensure that page is starting at the correct position
@@ -53,25 +49,26 @@ function initiatePage() {
 		letters[currentLetterPosition];
 
 	document.getElementById("img-start").src =
-		"images/" + letters[currentLetterPosition] + "-start.jpg";
+		"images/" + letters[currentLetterPosition] + "-start.png";
 	document.getElementById("img-mid").src =
-		"images/" + letters[currentLetterPosition] + "-mid.jpg";
+		"images/" + letters[currentLetterPosition] + "-mid.png";
 	document.getElementById("img-end").src =
-		"images/" + letters[currentLetterPosition] + "-end.jpg";
+		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	renderPagination();
 }
 
-function refreshPage() {
+// refresh page to current letter, images and pagination
+function updatePage() {
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
 	document.getElementById("img-start").src =
-		"images/" + letters[currentLetterPosition] + "-start.jpg";
+		"images/" + letters[currentLetterPosition] + "-start.png";
 	document.getElementById("img-mid").src =
-		"images/" + letters[currentLetterPosition] + "-mid.jpg";
+		"images/" + letters[currentLetterPosition] + "-mid.png";
 	document.getElementById("img-end").src =
-		"images/" + letters[currentLetterPosition] + "-end.jpg";
+		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	renderPagination();
 }
@@ -94,7 +91,7 @@ function renderPagination() {
 		}
 		pageNumber.onclick = function() {
 			currentLetterPosition = key;
-			refreshPage();
+			updatePage();
 		};
 		progressBlock.appendChild(pageNumber);
 		progressBar.appendChild(progressBlock);
@@ -104,4 +101,5 @@ function renderPagination() {
 
 function selectRadios() {
 	
+
 }
