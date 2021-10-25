@@ -16,17 +16,17 @@
 
 
 	</head>
-	<body onload="prepareButtons()">
+	<body onload="initiatePage()">
 		<!-- TODO: Change to logo once ready -->
 		<nav class="navbar-dark bg-dark py-4">
 			<div class="container-fluid text-center ">
 				<a class="navbar-brand fs-4 text-wrap" href="#">
-					<!-- <img src="images/apple.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+					<!-- <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
 					Talking Made Easy Speech Sound Assessment
 				</a>
 			</nav>
 			<div>
-				<h1 class="letter">P</h1>
+				<h1 class="letter" id="main-letter">P</h1>
 			</div>
 			<!-- Container Fluid Means that the container stretches the entire span -->
 			<div class="container-fluid">
@@ -35,7 +35,7 @@
 					<div class="col-sm">
 						<!-- mb-3 addes a margin of 3 below the card -->
 						<div class="card mb-3">
-							<img src="images/pen.jpg" class="card-img-top" alt="..." />
+							<img src="" class="card-img-top" id="img-start" alt="..." />
 							<div class="card-body">
 								<div class="radio-button">
 									<div class="radio-buttons">
@@ -66,7 +66,7 @@
 					</div>
 					<div class="col-sm">
 						<div class="card mb-3">
-							<img src="images/apple.jpg" class="card-img-top" alt="..." />
+							<img src="" class="card-img-top" id="img-mid" alt="..." />
 							<div class="card-body">
 								<div class="radio-button">
 						<div class="radio-buttons">
@@ -97,7 +97,7 @@
 					</div>
 					<div class="col-sm">
 						<div class="card mb-3">
-							<img src="images/stop.jpg" class="card-img-top" alt="..." />
+							<img src="" class="card-img-top" id="img-end" alt="..." />
 							<div class="card-body">
 								<div class="radio-button">
 						<div class="radio-buttons">
@@ -132,11 +132,19 @@
 			<nav aria-label="...">
 				<ul class="pagination justify-content-center">
 					<li class="page-item">
-						<a class="page-link ">Previous</a>
+						<a class="page-link" id="previous-button" href="#">Previous</a>
 					</li>
 					<li class="page-item active">
-						<a class="page-link" href="#">Next</a>
+						<a class="page-link" id="next-button" href="#">Next</a>
 					</li>
+				</ul>
+			</nav>
+			<nav aria-label="...">
+				<ul class="pagination justify-content-center" id="progress-bar">
+					<template id= "progress-block-template">
+						<li class="page-item"><a class="page-link" id="progress-letter" href="#">1</a></li>
+					</template>
+
 				</ul>
 			</nav>
 		</body>
