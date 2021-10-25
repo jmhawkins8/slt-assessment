@@ -16,7 +16,7 @@
 
 
 	</head>
-	<body>
+	<body onload="prepareButtons()">
 		<!-- TODO: Change to logo once ready -->
 		<nav class="navbar-dark bg-dark py-4">
 			<div class="container-fluid text-center ">
@@ -41,7 +41,7 @@
 									<div class="radio-buttons">
 										<label class="custom-radio">
 											<input type="radio" name="radio1">
-											<span class="radio-btn"
+											<span class="radio-btn" name="begining" value=true
 												><i class="fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-grin-beam"></i>
@@ -51,7 +51,7 @@
 										</label>
 										<label class="custom-radio">
 											<input type="radio" name="radio1" />
-											<span class="radio-btn"
+											<span class="radio-btn" name="begining" value=false
 												><i class="fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-smile-wink"></i>
@@ -72,7 +72,7 @@
 						<div class="radio-buttons">
 							<label class="custom-radio">
 								<input type="radio" name="radio2">
-								<span class="radio-btn"
+								<span class="radio-btn" name="middle" value=true
 									><i class="fas fa-check-circle"></i>
 									<div class="hobbies-icon">
 										<i class="far fa-grin-beam"></i>
@@ -82,7 +82,7 @@
 							</label>
 							<label class="custom-radio">
 								<input type="radio" name="radio2" />
-								<span class="radio-btn"
+								<span class="radio-btn" name="middle" value=false
 									><i class="fas fa-check-circle"></i>
 									<div class="hobbies-icon">
 										<i class="far fa-smile-wink"></i>
@@ -103,7 +103,7 @@
 						<div class="radio-buttons">
 							<label class="custom-radio">
 								<input type="radio" name="radio3">
-								<span class="radio-btn"
+								<span class="radio-btn" name="end" value=true
 									><i class="fas fa-check-circle"></i>
 									<div class="hobbies-icon">
 										<i class="far fa-grin-beam"></i>
@@ -113,7 +113,7 @@
 							</label>
 							<label class="custom-radio">
 								<input type="radio" name="radio3" />
-								<span class="radio-btn"
+								<span class="radio-btn" name="end" value=false
 									><i class="fas fa-check-circle"></i>
 									<div class="hobbies-icon">
 										<i class="far fa-smile-wink"></i>
