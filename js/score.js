@@ -33,15 +33,7 @@ S:["Sun", "Muscle", "House"],
 Z:["Zebra", "Puzzle", "Cheese"],
 Sh:["Shoe", "Fishing", "Bush"],
 Ch:["Chair", "Catching", "Witch"],
-
 }
-
-
-
-
-
-
-
 
 function initiatePage() {
 	console.log(Results)
@@ -95,11 +87,11 @@ function updatePage() {
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
-	document.getElementById("wordStart").innerHTML =
+	document.getElementById("word-start").innerHTML =
 		words[letters[currentLetterPosition]][0];
-	document.getElementById("wordMid").innerHTML =
+	document.getElementById("word-mid").innerHTML =
 		words[letters[currentLetterPosition]][1];
-	document.getElementById("wordEnd").innerHTML =
+	document.getElementById("word-end").innerHTML =
 		words[letters[currentLetterPosition]][2];
 
 	document.getElementById("img-start").src =
