@@ -10,24 +10,22 @@
 		<script src="https://kit.fontawesome.com/84a0627b3e.js" crossorigin="anonymous"></script>
 		<!-- Custom CSS -->
 		<link rel="stylesheet" type="text/css" href="style.css">
-
-
 		<!-- Javascript -->
 		<script type="text/javascript" src="js/main.js"></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mali:wght@600;700&display=swap" rel="stylesheet">
-
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Mali:wght@600;700&display=swap" rel="stylesheet">
 		
 	</head>
 	<body onload="initiatePage()">
 		<nav class="navbar-light bg-white py-4">
 			<div class="container-fluid text-center ">
-        <span><img src="images/logo.png"></span>
-      </div>
-			</nav>
-
-		<div class="jas-font"><h1>Let's play a game! Can you name all the pictures below?...</h1></div>
+				<span><img src="images/logo.png"></span>
+			</div>
+		</nav>
+		<div id="questions">
+			
+			<div class="jas-font"><h1>Let's play a game! Can you name all the pictures below?...</h1></div>
 			<div>
 				<h1 class="letter" id="main-letter">P</h1>
 			</div>
@@ -38,7 +36,6 @@
 					<div class="col-sm">
 						<!-- mb-3 addes a margin of 3 below the card -->
 						<div class="card mb-3">
-
 							<img src="" class="card-img-top" id="img-start" alt="..." />
 							<h1 class="jas-text">Pen</h1>
 							<div class="card-body">
@@ -73,32 +70,31 @@
 						<div class="card mb-3">
 							<img src="" class="card-img-top" id="img-mid" alt="..." />
 							<h1 class="jas-text">Apple</h1>
-
 							<div class="card-body">
 								<div class="radio-container">
-						<div class="radio-buttons">
-							<label class="custom-radio">
-								<input type="radio" class="all-radios" name="radio2" id="radio-mid-true">
-								<span class="radio-btn" name="middle" value=true
-									><i class="fas fa-check-circle"></i>
-									<div class="hobbies-icon">
-										<i class="far fa-grin-beam"></i>
-										<h3>Nice Work!</h3>
+									<div class="radio-buttons">
+										<label class="custom-radio">
+											<input type="radio" class="all-radios" name="radio2" id="radio-mid-true">
+											<span class="radio-btn" name="middle" value=true
+												><i class="fas fa-check-circle"></i>
+												<div class="hobbies-icon">
+													<i class="far fa-grin-beam"></i>
+													<h3>Nice Work!</h3>
+												</div>
+											</span>
+										</label>
+										<label class="custom-radio">
+											<input type="radio" class="all-radios" name="radio2" id="radio-mid-false" />
+											<span class="radio-btn" name="middle" value=false
+												><i class="fas fa-check-circle"></i>
+												<div class="hobbies-icon">
+													<i class="far fa-smile-wink"></i>
+													<h3>Not<br>Yet</h3>
+												</div>
+											</span>
+										</label>
 									</div>
-								</span>
-							</label>
-							<label class="custom-radio">
-								<input type="radio" class="all-radios" name="radio2" id="radio-mid-false" />
-								<span class="radio-btn" name="middle" value=false
-									><i class="fas fa-check-circle"></i>
-									<div class="hobbies-icon">
-										<i class="far fa-smile-wink"></i>
-										<h3>Not<br>Yet</h3>
-									</div>
-								</span>
-							</label>
-						</div>
-					</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -108,29 +104,29 @@
 							<h1 class="jas-text">Cup</h1>
 							<div class="card-body">
 								<div class="radio-container">
-						<div class="radio-buttons">
-							<label class="custom-radio">
-								<input type="radio" class="all-radios" name="radio3" id="radio-end-true">
-								<span class="radio-btn" name="end" value=true
-									><i class="fas fa-check-circle"></i>
-									<div class="hobbies-icon">
-										<i class="far fa-grin-beam"></i>
-										<h3>Nice Work!</h3>
+									<div class="radio-buttons">
+										<label class="custom-radio">
+											<input type="radio" class="all-radios" name="radio3" id="radio-end-true">
+											<span class="radio-btn" name="end" value=true
+												><i class="fas fa-check-circle"></i>
+												<div class="hobbies-icon">
+													<i class="far fa-grin-beam"></i>
+													<h3>Nice Work!</h3>
+												</div>
+											</span>
+										</label>
+										<label class="custom-radio">
+											<input type="radio" class="all-radios" name="radio3" id="radio-end-false" />
+											<span class="radio-btn" name="end" value=false
+												><i class="fas fa-check-circle"></i>
+												<div class="hobbies-icon">
+													<i class="far fa-smile-wink"></i>
+													<h3>Not<br>Yet</h3>
+												</div>
+											</span>
+										</label>
 									</div>
-								</span>
-							</label>
-							<label class="custom-radio">
-								<input type="radio" class="all-radios" name="radio3" id="radio-end-false" />
-								<span class="radio-btn" name="end" value=false
-									><i class="fas fa-check-circle"></i>
-									<div class="hobbies-icon">
-										<i class="far fa-smile-wink"></i>
-										<h3>Not<br>Yet</h3>
-									</div>
-								</span>
-							</label>
-						</div>
-					</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -146,10 +142,40 @@
 						<a class="page-link" id="next-button" href="#">Next</a>
 					</li>
 				</ul>
+				<div class="col-md-12 text-center py-2">
+					<button type="button" class="btn btn-outline-success" id="submit-button">Submit</button>
+				</div>
 			</nav>
 			<nav aria-label="...">
-				<ul class="pagination justify-content-center" id="progress-bar">
+				<ul class="pagination justify-content-center pt-5" id="progress-bar">
 				</ul>
 			</nav>
-		</body>
-	</html>
+		</div>
+		<div id="results" class="">
+			<div class="list-group px-3">
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Sounds Available</h5>
+					</div>
+					<p class="mb-1" id="available-sounds"></p>
+				</a>
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Sounds To Practice</h5>
+					</div>
+					<p class="mb-1" id="to-practice"></p>
+				</a>
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Sounds Missing</h5>
+					</div>
+					<p class="mb-1" id="missing-sounds"></p>
+				</a>
+			</div>
+			<div class="col-md-12 text-center py-2">
+				<button type="button" class="btn btn-outline-success" id="go-back-button">Go Back</button>
+			</div>
+			
+		</div>
+	</body>
+</html>
