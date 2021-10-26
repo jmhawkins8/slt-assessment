@@ -1,5 +1,5 @@
 // Add new letters as needed
-const letters = ["P", "B", "T", "D", "K"];
+const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch"];
 
 // This number will itterate through the letters
 currentLetterPosition = 0;
@@ -14,11 +14,30 @@ var Results = letters.map((letter) => {
 	};
 });
 
+// Changing the words below the images to match
+
+const words = {P:["Pen", "Apple", "Cup"],
+B:["Ball", "Baby", "Web"],
+T:["Tent", "Butter", "Boat"],
+D:["Duck", "Ladder", "Hand"],
+K:["Cat", "Bucket", "Book"],
+G:["Gate", "Tiger", "Dog"], 
+F:["Fire", "Dolphin", "Leaf"],
+V:["Van", "TV", "Love"],
+M:["Monkey", "Hammer", "Worm"],
+N:["Nose", "Money", "Lion"],
+L:["Lemon", "Toilet", "Girl"],
+H:["Hat", "Beehive", ""],
+S:["Sun", "Muscle", "House"],
+Z:["Zebra", "Puzzle", "Cheese"],
+Sh:["Shoe", "Fishing", "Bush"],
+Ch:["Chair", "Catching", "Witch"],
+}
+
 function initiatePage() {
 	// hide results
 	document.getElementById("results").style.display = "none";
-	//console.log(Results)
-	// Select all radios based on vlass .radio-btn
+	// Select all radios based on class .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
 	// itterate through each class, and create a function that fires when clicked
@@ -77,6 +96,13 @@ function updatePage() {
 
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
+
+	document.getElementById("word-start").innerHTML =
+		words[letters[currentLetterPosition]][0];
+	document.getElementById("word-mid").innerHTML =
+		words[letters[currentLetterPosition]][1];
+	document.getElementById("word-end").innerHTML =
+		words[letters[currentLetterPosition]][2];
 
 	document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
