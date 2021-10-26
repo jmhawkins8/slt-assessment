@@ -1,4 +1,3 @@
-
 // Add new letters as needed
 const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch"];
 
@@ -36,7 +35,8 @@ Ch:["Chair", "Catching", "Witch"],
 }
 
 function initiatePage() {
-	console.log(Results)
+	// hide results
+	document.getElementById("results").style.display = "none";
 	// Select all radios based on class .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
@@ -44,8 +44,10 @@ function initiatePage() {
 	radios.forEach((radio) => {
 		radio.onclick = function() {
 			// modify Results by the value of the radio clicked
-			Results[currentLetterPosition][radio.getAttribute("name")] = radio.getAttribute("value");
-			console.log(Results);
+			Results[currentLetterPosition][
+				radio.getAttribute("name")
+			] = JSON.parse(radio.getAttribute("value"));
+			//console.log(Results);
 		};
 	});
 
@@ -75,14 +77,22 @@ function initiatePage() {
 	document.getElementById("img-end").src =
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
+	document.getElementById("submit-button").onclick = function() {
+		generateOutput()
+	};
+
+	document.getElementById("go-back-button").onclick = function() {
+		document.getElementById("questions").style.display = "inline";
+		document.getElementById("results").style.display = "none";
+	};
+
 	renderPagination();
-	selectRadios()
+	selectRadios();
 }
 
 // refresh page to current letter, images and pagination
 function updatePage() {
-
-	selectRadios()
+	selectRadios();
 
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
@@ -102,6 +112,7 @@ function updatePage() {
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	renderPagination();
+
 }
 
 function renderPagination() {
@@ -129,29 +140,77 @@ function renderPagination() {
 	});
 }
 
-
 function selectRadios() {
-
 	// Collect all radios
-	var allRadios = document.querySelectorAll('.all-radios')
+	var allRadios = document.querySelectorAll(".all-radios");
 
 	// Create an array of results that can be null, false, or true
-	let currentResults = [Results[currentLetterPosition].start, Results[currentLetterPosition].middle, Results[currentLetterPosition].end]
+	let currentResults = [
+		Results[currentLetterPosition].start,
+		Results[currentLetterPosition].middle,
+		Results[currentLetterPosition].end,
+	];
 
 	// mapping to convert the currentResults into an array for the radios
-	const radioMapping = {null: [false,false],
-						true: [true, false],
-						false: [false,true]}
+	const radioMapping = {
+		null: [false, false],
+		true: [true, false],
+		false: [false, true],
+	};
 
-	// map the result from the [start,middle,end] into an size 6 array of booleans 
+	// map the result from the [start,middle,end] into an size 6 array of booleans
 	// .flat() at the end converts the 3x2 array into a 6x1
-	var radioStatus = currentResults.map((result)=>{
-		return radioMapping[result]
-	}).flat()
+	var radioStatus = currentResults
+		.map((result) => {
+			return radioMapping[result];
+		})
+		.flat();
 
 	// Select all radios based on Radio Status
-	allRadios.forEach((radio, key) =>{
-		radio.checked = radioStatus[key]
-	})
+	allRadios.forEach((radio, key) => {
+		radio.checked = radioStatus[key];
+	});
+}
 
+
+function generateOutput() {
+	//console.log(Results)
+	var availableSounds = [];
+	var missingSounds = [];
+	// by Jasper
+	var toPractice = [];
+
+	Results.forEach((letter) => {
+		if (letter.start && letter.middle && letter.end) {
+			availableSounds.push(letter);
+		} else if (!(letter.start || letter.middle || letter.end)) {
+			missingSounds.push(letter);
+		} else {
+			toPractice.push(letter);
+		}
+	});
+	console.log("available sounds", availableSounds);
+	console.log("missing sounds", missingSounds);
+	console.log("to practice", toPractice);
+
+	document.getElementById("questions").style.display = "none";
+	document.getElementById("results").style.display = "inline";
+
+	const missingSoundsArray = missingSounds.map((sound)=>{
+		return sound.letter
+	}).join(",")
+
+	const availableSoundsArray = availableSounds.map((sound)=>{
+		return sound.letter
+	}).join(",")
+
+	const toPracticeArray = toPractice.map((sound)=>{
+		return sound.letter
+	}).join(",")
+	
+
+	//document.getElementById('available-sounds').innerHTML =
+	document.getElementById('missing-sounds').innerHTML = missingSoundsArray
+	document.getElementById('available-sounds').innerHTML = availableSoundsArray
+	document.getElementById('to-practice').innerHTML = toPracticeArray
 }
