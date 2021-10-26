@@ -128,3 +128,8 @@ function selectRadios() {
 	})
 
 }
+
+
+function score() {
+	
+}
