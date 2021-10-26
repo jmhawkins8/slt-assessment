@@ -16,7 +16,7 @@ var Results = letters.map((letter) => {
 });
 
 function initiatePage() {
-	console.log(Results)
+	//console.log(Results)
 	// Select all radios based on vlass .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
@@ -24,8 +24,8 @@ function initiatePage() {
 	radios.forEach((radio) => {
 		radio.onclick = function() {
 			// modify Results by the value of the radio clicked
-			Results[currentLetterPosition][radio.getAttribute("name")] = radio.getAttribute("value");
-			console.log(Results);
+			Results[currentLetterPosition][radio.getAttribute("name")] = JSON.parse(radio.getAttribute("value"));
+			//console.log(Results);
 		};
 	});
 
@@ -100,6 +100,8 @@ function renderPagination() {
 		progressBlock.appendChild(pageNumber);
 		progressBar.appendChild(progressBlock);
 	});
+
+	generateOutput()
 }
 
 
@@ -130,6 +132,24 @@ function selectRadios() {
 }
 
 
-function score() {
-	
+function generateOutput() {
+	//console.log(Results)
+	var availableLetters = []
+	var missingSounds = []
+	// by Jasper
+	var toPractice = []
+
+	Results.forEach((letter) =>{
+		if (letter.start && letter.middle && letter.end) {
+			availableLetters.push(letter)
+		} else if (!(letter.start || letter.middle || letter.end)) {
+			missingSounds.push(letter)
+		} else {
+			toPractice.push(letter)
+		}
+	})
+	console.log('available letters',availableLetters)
+	console.log('missing sounds', missingSounds)
+	console.log('to practice', toPractice)
+
 }
