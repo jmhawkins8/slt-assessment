@@ -141,7 +141,7 @@ function generateOutput() {
 
 	Results.forEach((letter) =>{
 		if (letter.start && letter.middle && letter.end) {
-			availableLetters.push(letter)
+			availableLetters.push(letters)
 		} else if (!(letter.start || letter.middle || letter.end)) {
 			missingSounds.push(letter)
 		} else {
