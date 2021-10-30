@@ -19,7 +19,6 @@ November 2021
 
 */
 
-
 // This number will itterate through the letters
 currentLetterPosition = 0;
 
@@ -48,14 +47,13 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
-			showSoundTest()
-
+			showSoundTest();
 		};
 	});
 
 	// Creating itterations through next and previous buttons
 	document.getElementById("next-button").onclick = function() {
-		if (currentLetterPosition < letters.length - 1) {
+		if (checkAllSelected() && currentLetterPosition < letters.length - 1) {
 			currentLetterPosition++;
 			updatePage();
 		}
@@ -96,6 +94,7 @@ function initiatePage() {
 
 // refresh page to current letter, images and pagination
 function updatePage() {
+	showSoundTest()
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
@@ -119,26 +118,43 @@ function updatePage() {
 	selectRadios();
 }
 
+function checkAllSelected() {
+	// reader be warned, this is a mind-fuck
+
+	// Are start, middle and end radios selected? returns true if all three are selected
+	const picturesSelected = !(
+		Results[currentLetterPosition].start === null ||
+		Results[currentLetterPosition].middle === null ||
+		Results[currentLetterPosition].end === null
+	)
+
+	// Is the sound test available? returns true if sound test is available
+	const soundTestAvailable = (
+		Results[currentLetterPosition].start === false &&
+		Results[currentLetterPosition].middle === false &&
+		Results[currentLetterPosition].end === false
+	)
+
+	// if sound test not available, or available and selected we want it to be true
+	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != null)
+
+	// retrun true if all available radio buttons are selected
+	return (picturesSelected && soundTestSelected)
+}
+
 function showSoundTest() {
-	
-
-
-			// Show or hide optional sound test if all are incorrect
-			if (
-					Results[currentLetterPosition].start === false &&
-					Results[currentLetterPosition].middle === false &&
-					Results[currentLetterPosition].end === false
-			
-			) {
-				// all results were false
-				document.getElementById("sound-test").style.display = "inline";
-				
-				
-			}
-			else{
-				// hide sound test
-				document.getElementById("sound-test").style.display = "none";
-			}
+	// Show or hide optional sound test if all are incorrect
+	if (
+		Results[currentLetterPosition].start === false &&
+		Results[currentLetterPosition].middle === false &&
+		Results[currentLetterPosition].end === false
+	) {
+		// all results were false
+		document.getElementById("sound-test").style.display = "inline";
+	} else {
+		// hide sound test
+		document.getElementById("sound-test").style.display = "none";
+	}
 }
 
 function renderPagination() {
@@ -174,6 +190,7 @@ function renderPagination() {
 }
 
 function selectRadios() {
+	//TODO: map radio selection to new sound test buttons
 	// Collect all radios
 	var allRadios = document.querySelectorAll(".all-radios");
 
