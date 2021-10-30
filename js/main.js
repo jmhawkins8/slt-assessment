@@ -66,17 +66,6 @@ function initiatePage() {
 		}
 	};
 
-	// Ensure that page is starting at the correct position
-	document.getElementById("main-letter").innerHTML =
-		letters[currentLetterPosition];
-
-	document.getElementById("img-start").src =
-		"images/" + letters[currentLetterPosition] + "-start.png";
-	document.getElementById("img-mid").src =
-		"images/" + letters[currentLetterPosition] + "-mid.png";
-	document.getElementById("img-end").src =
-		"images/" + letters[currentLetterPosition] + "-end.png";
-
 	document.getElementById("submit-button").onclick = function() {
 		generateOutput();
 	};
@@ -86,10 +75,7 @@ function initiatePage() {
 		document.getElementById("results").style.display = "none";
 	};
 
-	// Update progress bar at the bottom
-	renderPagination();
-	// select radio buttons based on previous inputs
-	selectRadios();
+	updatePage()
 }
 
 // refresh page to current letter, images and pagination
@@ -112,7 +98,15 @@ function updatePage() {
 	document.getElementById("word-end").innerHTML =
 		wordLibrary[letters[currentLetterPosition]].words[2];
 
-	// update images
+	// modify video to Library
+	let videoIframe = document.getElementById("vidlink");
+	videoIframe.src = wordLibrary[letters[currentLetterPosition]].videoLink;
+		
+	// Update progress bar at the bottom
+	renderPagination();
+	// select radio buttons based on previous inputs
+	selectRadios();
+
 	document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
 	document.getElementById("img-mid").src =
@@ -120,10 +114,6 @@ function updatePage() {
 	document.getElementById("img-end").src =
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
-	// Update progress bar at the bottom
-	renderPagination();
-	// select radio buttons based on previous inputs
-	selectRadios();
 }
 
 function checkAllSelected() {
