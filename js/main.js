@@ -35,8 +35,9 @@ var Results = letters.map((letter) => {
 });
 
 function initiatePage() {
-	// hide results
+	// hide results and soundtest
 	document.getElementById("results").style.display = "none";
+	document.getElementById("sound-test").style.display = "none";
 	// Select all radios based on class .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
@@ -48,20 +49,9 @@ function initiatePage() {
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
 
-			// Show or hide optional sound test if all are incorrect
-			if (
-				!(
-					Results[currentLetterPosition].start ||
-					Results[currentLetterPosition].middle ||
-					Results[currentLetterPosition].end
-				)
-			) {
-				// all results were false 'not quite'
-				showSoundTest()
-			}
-			else{
-				console.log('hide sound test')
-			}
+			console.log(Results)
+			showSoundTest()
+
 		};
 	});
 
@@ -131,7 +121,26 @@ function updatePage() {
 	selectRadios();
 }
 
-function showSoundTest() {}
+function showSoundTest() {
+	
+
+
+			// Show or hide optional sound test if all are incorrect
+			if (
+					Results[currentLetterPosition].start === true &&
+					Results[currentLetterPosition].middle === true &&
+					Results[currentLetterPosition].end === true
+			
+			) {
+				// all results were false
+				document.getElementById("sound-test").style.display = "none";
+				
+			}
+			else{
+				// hide sound test
+				document.getElementById("sound-test").style.display = "inline";
+			}
+}
 
 function renderPagination() {
 	var progressBar = document.getElementById("progress-bar");
