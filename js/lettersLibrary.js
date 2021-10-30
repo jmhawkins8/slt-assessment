@@ -5,15 +5,15 @@ const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S"
 const wordLibrary = {
 	P: {
 		words: ["Pen", "Apple", "Cup"],
-		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+		videoLink: "https://www.youtube.com/embed/XP0GQjiL82I",
 	},
 	B: {
 		words: ["Ball", "Baby", "Web"],
-		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+		videoLink: "https://www.youtube.com/embed/4CoxQ3gMp4I",
 	},
 	T: {
 		words: ["Tent", "Butter", "Boat"],
-		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+		videoLink: "https://www.youtube.com/embed/vm4MvGw-wt8",
 	},
 	D: {
 		words: ["Duck", "Ladder", "Hand"],

@@ -68,16 +68,6 @@ function initiatePage() {
 		}
 	};
 
-	// Ensure that page is starting at the correct position
-	document.getElementById("main-letter").innerHTML =
-		letters[currentLetterPosition];
-
-	document.getElementById("img-start").src =
-		"images/" + letters[currentLetterPosition] + "-start.png";
-	document.getElementById("img-mid").src =
-		"images/" + letters[currentLetterPosition] + "-mid.png";
-	document.getElementById("img-end").src =
-		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	document.getElementById("submit-button").onclick = function() {
 		generateOutput();
@@ -88,10 +78,7 @@ function initiatePage() {
 		document.getElementById("results").style.display = "none";
 	};
 
-	// Update progress bar at the bottom
-	renderPagination();
-	// select radio buttons based on previous inputs
-	selectRadios();
+	updatePage()
 }
 
 // refresh page to current letter, images and pagination
@@ -106,17 +93,27 @@ function updatePage() {
 	document.getElementById("word-end").innerHTML =
 		wordLibrary[letters[currentLetterPosition]].words[2];
 
-	document.getElementById("img-start").src =
+
+			let videoIframe = document.getElementById("vidlink");
+			console.log(videoIframe.src);
+
+			videoIframe.src = wordLibrary[letters[currentLetterPosition]].videoLink;
+		
+
+
+
+	// Update progress bar at the bottom
+	renderPagination();
+	// select radio buttons based on previous inputs
+	selectRadios();
+
+		document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
 	document.getElementById("img-mid").src =
 		"images/" + letters[currentLetterPosition] + "-mid.png";
 	document.getElementById("img-end").src =
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
-	// Update progress bar at the bottom
-	renderPagination();
-	// select radio buttons based on previous inputs
-	selectRadios();
 }
 
 function showSoundTest() {
@@ -127,7 +124,7 @@ function showSoundTest() {
 			if (
 					Results[currentLetterPosition].start === false &&
 					Results[currentLetterPosition].middle === false &&
-					Results[currentLetterPosition].end === false
+					Results[currentLetterPosition].end === false 
 			
 			) {
 				// all results were false
@@ -139,6 +136,7 @@ function showSoundTest() {
 				// hide sound test
 				document.getElementById("sound-test").style.display = "none";
 			}
+
 }
 
 function renderPagination() {
