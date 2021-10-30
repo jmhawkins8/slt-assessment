@@ -8,6 +8,10 @@
   display: none;
 }
 
+.button-validation{
+  display:  none;
+}
+
 
 .letter{
 		text-align: center;
