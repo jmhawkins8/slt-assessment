@@ -19,7 +19,6 @@ November 2021
 
 */
 
-
 // This number will itterate through the letters
 currentLetterPosition = 0;
 
@@ -48,14 +47,13 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
-			showSoundTest()
-
+			showSoundTest();
 		};
 	});
 
 	// Creating itterations through next and previous buttons
 	document.getElementById("next-button").onclick = function() {
-		if (currentLetterPosition < letters.length - 1) {
+		if (checkAllSelected() && currentLetterPosition < letters.length - 1) {
 			currentLetterPosition++;
 			updatePage();
 		}
@@ -67,7 +65,6 @@ function initiatePage() {
 			updatePage();
 		}
 	};
-
 
 	document.getElementById("submit-button").onclick = function() {
 		generateOutput();
@@ -83,9 +80,17 @@ function initiatePage() {
 
 // refresh page to current letter, images and pagination
 function updatePage() {
+	showSoundTest()
+
+	//scroll to top
+	document.body.scrollTop = 0; // For Safari
+  	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+  	// change letterrs to current letter
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
+	// update words under image
 	document.getElementById("word-start").innerHTML =
 		wordLibrary[letters[currentLetterPosition]].words[0];
 	document.getElementById("word-mid").innerHTML =
@@ -93,21 +98,16 @@ function updatePage() {
 	document.getElementById("word-end").innerHTML =
 		wordLibrary[letters[currentLetterPosition]].words[2];
 
-
-			let videoIframe = document.getElementById("vidlink");
-			console.log(videoIframe.src);
-
-			videoIframe.src = wordLibrary[letters[currentLetterPosition]].videoLink;
+	// modify video to Library
+	let videoIframe = document.getElementById("vidlink");
+	videoIframe.src = wordLibrary[letters[currentLetterPosition]].videoLink;
 		
-
-
-
 	// Update progress bar at the bottom
 	renderPagination();
 	// select radio buttons based on previous inputs
 	selectRadios();
 
-		document.getElementById("img-start").src =
+	document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
 	document.getElementById("img-mid").src =
 		"images/" + letters[currentLetterPosition] + "-mid.png";
@@ -116,27 +116,43 @@ function updatePage() {
 
 }
 
+function checkAllSelected() {
+	// reader be warned, this is a mind-fuck
+
+	// Are start, middle and end radios selected? returns true if all three are selected
+	const picturesSelected = !(
+		Results[currentLetterPosition].start === null ||
+		Results[currentLetterPosition].middle === null ||
+		Results[currentLetterPosition].end === null
+	)
+
+	// Is the sound test available? returns true if sound test is available
+	const soundTestAvailable = (
+		Results[currentLetterPosition].start === false &&
+		Results[currentLetterPosition].middle === false &&
+		Results[currentLetterPosition].end === false
+	)
+
+	// if sound test not available, or available and selected we want it to be true
+	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != null)
+
+	// retrun true if all available radio buttons are selected
+	return (picturesSelected && soundTestSelected)
+}
+
 function showSoundTest() {
-	
-
-
-			// Show or hide optional sound test if all are incorrect
-			if (
-					Results[currentLetterPosition].start === false &&
-					Results[currentLetterPosition].middle === false &&
-					Results[currentLetterPosition].end === false 
-			
-			) {
-				// all results were false
-				document.getElementById("sound-test").style.display = "inline";
-				
-				
-			}
-			else{
-				// hide sound test
-				document.getElementById("sound-test").style.display = "none";
-			}
-
+	// Show or hide optional sound test if all are incorrect
+	if (
+		Results[currentLetterPosition].start === false &&
+		Results[currentLetterPosition].middle === false &&
+		Results[currentLetterPosition].end === false
+	) {
+		// all results were false
+		document.getElementById("sound-test").style.display = "inline";
+	} else {
+		// hide sound test
+		document.getElementById("sound-test").style.display = "none";
+	}
 }
 
 function renderPagination() {
@@ -163,8 +179,10 @@ function renderPagination() {
 
 		// navigate to the clicked letter
 		pageNumber.onclick = function() {
-			currentLetterPosition = key;
-			updatePage();
+			if(checkAllSelected()){
+				currentLetterPosition = key;
+				updatePage();
+			}
 		};
 		progressBlock.appendChild(pageNumber);
 		progressBar.appendChild(progressBlock);
@@ -180,6 +198,7 @@ function selectRadios() {
 		Results[currentLetterPosition].start,
 		Results[currentLetterPosition].middle,
 		Results[currentLetterPosition].end,
+		Results[currentLetterPosition].sound,
 	];
 
 	// mapping to convert the currentResults into an array for the radios
