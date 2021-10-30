@@ -1,5 +1,24 @@
-// Add new letters as needed
-const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch"];
+/* 
+
+About: 
+Main .js file that manipulates the functionality of index.html
+
+Requirements:
+lettersLibrary.js contains the following constants
+- Letters: An Array of letters that will be renders
+- wordsLibrary: An object that maps letters to words and youtube links
+
+Notes:
+
+Developers:
+Jasper Hawkins
+Prageeth Jayathissa
+
+Date:
+November 2021
+
+*/
+
 
 // This number will itterate through the letters
 currentLetterPosition = 0;
@@ -11,32 +30,14 @@ var Results = letters.map((letter) => {
 		start: null,
 		middle: null,
 		end: null,
+		sound: null,
 	};
 });
 
-// Changing the words below the images to match
-
-const words = {P:["Pen", "Apple", "Cup"],
-B:["Ball", "Baby", "Web"],
-T:["Tent", "Butter", "Boat"],
-D:["Duck", "Ladder", "Hand"],
-K:["Cat", "Bucket", "Book"],
-G:["Gate", "Tiger", "Dog"], 
-F:["Fire", "Dolphin", "Leaf"],
-V:["Van", "TV", "Love"],
-M:["Monkey", "Hammer", "Worm"],
-N:["Nose", "Money", "Lion"],
-L:["Lemon", "Toilet", "Girl"],
-H:["Hat", "Beehive", ""],
-S:["Sun", "Muscle", "House"],
-Z:["Zebra", "Puzzle", "Cheese"],
-Sh:["Shoe", "Fishing", "Bush"],
-Ch:["Chair", "Catching", "Witch"],
-}
-
 function initiatePage() {
-	// hide results
+	// hide results and soundtest
 	document.getElementById("results").style.display = "none";
+	document.getElementById("sound-test").style.display = "none";
 	// Select all radios based on class .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
@@ -47,7 +48,8 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
-			//console.log(Results);
+			showSoundTest()
+
 		};
 	});
 
@@ -78,7 +80,7 @@ function initiatePage() {
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	document.getElementById("submit-button").onclick = function() {
-		generateOutput()
+		generateOutput();
 	};
 
 	document.getElementById("go-back-button").onclick = function() {
@@ -86,23 +88,23 @@ function initiatePage() {
 		document.getElementById("results").style.display = "none";
 	};
 
+	// Update progress bar at the bottom
 	renderPagination();
+	// select radio buttons based on previous inputs
 	selectRadios();
 }
 
 // refresh page to current letter, images and pagination
 function updatePage() {
-	selectRadios();
-
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
 	document.getElementById("word-start").innerHTML =
-		words[letters[currentLetterPosition]][0];
+		wordLibrary[letters[currentLetterPosition]].words[0];
 	document.getElementById("word-mid").innerHTML =
-		words[letters[currentLetterPosition]][1];
+		wordLibrary[letters[currentLetterPosition]].words[1];
 	document.getElementById("word-end").innerHTML =
-		words[letters[currentLetterPosition]][2];
+		wordLibrary[letters[currentLetterPosition]].words[2];
 
 	document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
@@ -111,26 +113,57 @@ function updatePage() {
 	document.getElementById("img-end").src =
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
+	// Update progress bar at the bottom
 	renderPagination();
+	// select radio buttons based on previous inputs
+	selectRadios();
+}
 
+function showSoundTest() {
+	
+
+
+			// Show or hide optional sound test if all are incorrect
+			if (
+					Results[currentLetterPosition].start === false &&
+					Results[currentLetterPosition].middle === false &&
+					Results[currentLetterPosition].end === false
+			
+			) {
+				// all results were false
+				document.getElementById("sound-test").style.display = "inline";
+				
+				
+			}
+			else{
+				// hide sound test
+				document.getElementById("sound-test").style.display = "none";
+			}
 }
 
 function renderPagination() {
 	var progressBar = document.getElementById("progress-bar");
+	// delete internal HTML
 	progressBar.replaceChildren();
 
+	// create internal blocks that contain letters for navigation
 	letters.forEach((letter, key) => {
+		// square element that contains the letter
 		var progressBlock = document.createElement("li");
+		// link that contains the letter
 		var pageNumber = document.createElement("a");
 		pageNumber.innerHTML = letter;
 		pageNumber.setAttribute("class", "page-link");
 		pageNumber.setAttribute("href", "#");
 
+		// colour the blocks so that the selected letter is actice
 		if (key == currentLetterPosition) {
 			progressBlock.setAttribute("class", "page-item active");
 		} else {
 			progressBlock.setAttribute("class", "page-item");
 		}
+
+		// navigate to the clicked letter
 		pageNumber.onclick = function() {
 			currentLetterPosition = key;
 			updatePage();
@@ -172,14 +205,14 @@ function selectRadios() {
 	});
 }
 
-
 function generateOutput() {
-	//console.log(Results)
+	// Empty arrays for collecting human readable result data
 	var availableSounds = [];
 	var missingSounds = [];
 	// by Jasper
 	var toPractice = [];
 
+	// Go through each letter and add to either available, missing, or toPractice
 	Results.forEach((letter) => {
 		if (letter.start && letter.middle && letter.end) {
 			availableSounds.push(letter);
@@ -189,28 +222,34 @@ function generateOutput() {
 			toPractice.push(letter);
 		}
 	});
-	console.log("available sounds", availableSounds);
-	console.log("missing sounds", missingSounds);
-	console.log("to practice", toPractice);
 
+	// Hide questions, and display results
 	document.getElementById("questions").style.display = "none";
 	document.getElementById("results").style.display = "inline";
 
-	const missingSoundsArray = missingSounds.map((sound)=>{
-		return sound.letter
-	}).join(",")
+	// Convert array of letters to a single string joined by commas (,)
+	const missingSoundsArray = missingSounds
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
 
-	const availableSoundsArray = availableSounds.map((sound)=>{
-		return sound.letter
-	}).join(",")
+	const availableSoundsArray = availableSounds
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
 
-	const toPracticeArray = toPractice.map((sound)=>{
-		return sound.letter
-	}).join(",")
-	
+	const toPracticeArray = toPractice
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
 
-	//document.getElementById('available-sounds').innerHTML =
-	document.getElementById('missing-sounds').innerHTML = missingSoundsArray
-	document.getElementById('available-sounds').innerHTML = availableSoundsArray
-	document.getElementById('to-practice').innerHTML = toPracticeArray
+	// make string the inner html to print
+	document.getElementById("missing-sounds").innerHTML = missingSoundsArray;
+	document.getElementById(
+		"available-sounds"
+	).innerHTML = availableSoundsArray;
+	document.getElementById("to-practice").innerHTML = toPracticeArray;
 }
