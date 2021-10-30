@@ -1,5 +1,22 @@
 // Add new letters as needed
-const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch"];
+const letters = [
+	"P",
+	"B",
+	"T",
+	"D",
+	"K",
+	"G",
+	"F",
+	"V",
+	"M",
+	"N",
+	"L",
+	"H",
+	"S",
+	"Z",
+	"Sh",
+	"Ch",
+];
 
 // This number will itterate through the letters
 currentLetterPosition = 0;
@@ -11,27 +28,77 @@ var Results = letters.map((letter) => {
 		start: null,
 		middle: null,
 		end: null,
+		sound: null,
 	};
 });
 
-// Changing the words below the images to match
-const words = {P:["Pen", "Apple", "Cup"],
-B:["Ball", "Baby", "Web"],
-T:["Tent", "Butter", "Boat"],
-D:["Duck", "Ladder", "Hand"],
-K:["Cat", "Bucket", "Book"],
-G:["Gate", "Tiger", "Dog"], 
-F:["Fire", "Dolphin", "Leaf"],
-V:["Van", "TV", "Love"],
-M:["Monkey", "Hammer", "Worm"],
-N:["Nose", "Money", "Lion"],
-L:["Lemon", "Toilet", "Girl"],
-H:["Hat", "Beehive", ""],
-S:["Sun", "Muscle", "House"],
-Z:["Zebra", "Puzzle", "Cheese"],
-Sh:["Shoe", "Fishing", "Bush"],
-Ch:["Chair", "Catching", "Witch"],
-}
+// Changing the wordLibrary below the images to match
+const wordLibrary = {
+	P: {
+		words: ["Pen", "Apple", "Cup"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	B: {
+		words: ["Ball", "Baby", "Web"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	T: {
+		words: ["Tent", "Butter", "Boat"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	D: {
+		words: ["Duck", "Ladder", "Hand"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	K: {
+		words: ["Cat", "Bucket", "Book"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	G: {
+		words: ["Gate", "Tiger", "Dog"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	F: {
+		words: ["Fire", "Dolphin", "Leaf"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	V: {
+		words: ["Van", "TV", "Love"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	M: {
+		words: ["Monkey", "Hammer", "Worm"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	N: {
+		words: ["Nose", "Money", "Lion"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	L: {
+		words: ["Lemon", "Toilet", "Girl"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	H: {
+		words: ["Hat", "Beehive", ""],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	S: {
+		words: ["Sun", "Muscle", "House"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	Z: {
+		words: ["Zebra", "Puzzle", "Cheese"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	Sh: {
+		words: ["Shoe", "Fishing", "Bush"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	Ch: {
+		words: ["Chair", "Catching", "Witch"],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+};
 
 function initiatePage() {
 	// hide results
@@ -46,6 +113,21 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
+
+			// Show or hide optional sound test if all are incorrect
+			if (
+				!(
+					Results[currentLetterPosition].start ||
+					Results[currentLetterPosition].middle ||
+					Results[currentLetterPosition].end
+				)
+			) {
+				// all results were false 'not quite'
+				showSoundTest()
+			}
+			else{
+				console.log('hide sound test')
+			}
 		};
 	});
 
@@ -76,7 +158,7 @@ function initiatePage() {
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
 	document.getElementById("submit-button").onclick = function() {
-		generateOutput()
+		generateOutput();
 	};
 
 	document.getElementById("go-back-button").onclick = function() {
@@ -92,16 +174,15 @@ function initiatePage() {
 
 // refresh page to current letter, images and pagination
 function updatePage() {
-
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
 	document.getElementById("word-start").innerHTML =
-		words[letters[currentLetterPosition]][0];
+		wordLibrary[letters[currentLetterPosition]].words[0];
 	document.getElementById("word-mid").innerHTML =
-		words[letters[currentLetterPosition]][1];
+		wordLibrary[letters[currentLetterPosition]].words[1];
 	document.getElementById("word-end").innerHTML =
-		words[letters[currentLetterPosition]][2];
+		wordLibrary[letters[currentLetterPosition]].words[2];
 
 	document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
@@ -114,9 +195,9 @@ function updatePage() {
 	renderPagination();
 	// select radio buttons based on previous inputs
 	selectRadios();
-
-
 }
+
+function showSoundTest() {}
 
 function renderPagination() {
 	var progressBar = document.getElementById("progress-bar");
@@ -182,9 +263,7 @@ function selectRadios() {
 	});
 }
 
-
 function generateOutput() {
-
 	// Empty arrays for collecting human readable result data
 	var availableSounds = [];
 	var missingSounds = [];
@@ -207,21 +286,28 @@ function generateOutput() {
 	document.getElementById("results").style.display = "inline";
 
 	// Convert array of letters to a single string joined by commas (,)
-	const missingSoundsArray = missingSounds.map((sound)=>{
-		return sound.letter
-	}).join(",")
+	const missingSoundsArray = missingSounds
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
 
-	const availableSoundsArray = availableSounds.map((sound)=>{
-		return sound.letter
-	}).join(",")
+	const availableSoundsArray = availableSounds
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
 
-	const toPracticeArray = toPractice.map((sound)=>{
-		return sound.letter
-	}).join(",")
-	
+	const toPracticeArray = toPractice
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
 
-	// make string the inner html to print 
-	document.getElementById('missing-sounds').innerHTML = missingSoundsArray
-	document.getElementById('available-sounds').innerHTML = availableSoundsArray
-	document.getElementById('to-practice').innerHTML = toPracticeArray
+	// make string the inner html to print
+	document.getElementById("missing-sounds").innerHTML = missingSoundsArray;
+	document.getElementById(
+		"available-sounds"
+	).innerHTML = availableSoundsArray;
+	document.getElementById("to-practice").innerHTML = toPracticeArray;
 }
