@@ -14,25 +14,8 @@
 
 
 .letter{
-		text-align: center;
 		font-size: 150px;
-    font-family: 'Mali', cursive;
-    padding: 20px 0;
-		}		
-
-    .jas-font h1{
-      font-family: 'Mali', cursive;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    .jas-text{
-    text-align: center;
-    font-size: 40px;
-    font-family: 'Mali', cursive;
-    padding: 10px 0;
-
-    }
+		}	
 
 		.radio-container{
 			display: flex;
