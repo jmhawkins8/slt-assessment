@@ -15,7 +15,6 @@ var Results = letters.map((letter) => {
 });
 
 // Changing the words below the images to match
-
 const words = {P:["Pen", "Apple", "Cup"],
 B:["Ball", "Baby", "Web"],
 T:["Tent", "Butter", "Boat"],
@@ -47,7 +46,6 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
-			//console.log(Results);
 		};
 	});
 
@@ -86,13 +84,14 @@ function initiatePage() {
 		document.getElementById("results").style.display = "none";
 	};
 
+	// Update progress bar at the bottom
 	renderPagination();
+	// select radio buttons based on previous inputs
 	selectRadios();
 }
 
 // refresh page to current letter, images and pagination
 function updatePage() {
-	selectRadios();
 
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
@@ -111,26 +110,37 @@ function updatePage() {
 	document.getElementById("img-end").src =
 		"images/" + letters[currentLetterPosition] + "-end.png";
 
+	// Update progress bar at the bottom
 	renderPagination();
+	// select radio buttons based on previous inputs
+	selectRadios();
+
 
 }
 
 function renderPagination() {
 	var progressBar = document.getElementById("progress-bar");
+	// delete internal HTML
 	progressBar.replaceChildren();
 
+	// create internal blocks that contain letters for navigation
 	letters.forEach((letter, key) => {
+		// square element that contains the letter
 		var progressBlock = document.createElement("li");
+		// link that contains the letter
 		var pageNumber = document.createElement("a");
 		pageNumber.innerHTML = letter;
 		pageNumber.setAttribute("class", "page-link");
 		pageNumber.setAttribute("href", "#");
 
+		// colour the blocks so that the selected letter is actice
 		if (key == currentLetterPosition) {
 			progressBlock.setAttribute("class", "page-item active");
 		} else {
 			progressBlock.setAttribute("class", "page-item");
 		}
+
+		// navigate to the clicked letter
 		pageNumber.onclick = function() {
 			currentLetterPosition = key;
 			updatePage();
@@ -174,12 +184,14 @@ function selectRadios() {
 
 
 function generateOutput() {
-	//console.log(Results)
+
+	// Empty arrays for collecting human readable result data
 	var availableSounds = [];
 	var missingSounds = [];
 	// by Jasper
 	var toPractice = [];
 
+	// Go through each letter and add to either available, missing, or toPractice
 	Results.forEach((letter) => {
 		if (letter.start && letter.middle && letter.end) {
 			availableSounds.push(letter);
@@ -189,13 +201,12 @@ function generateOutput() {
 			toPractice.push(letter);
 		}
 	});
-	console.log("available sounds", availableSounds);
-	console.log("missing sounds", missingSounds);
-	console.log("to practice", toPractice);
 
+	// Hide questions, and display results
 	document.getElementById("questions").style.display = "none";
 	document.getElementById("results").style.display = "inline";
 
+	// Convert array of letters to a single string joined by commas (,)
 	const missingSoundsArray = missingSounds.map((sound)=>{
 		return sound.letter
 	}).join(",")
@@ -209,7 +220,7 @@ function generateOutput() {
 	}).join(",")
 	
 
-	//document.getElementById('available-sounds').innerHTML =
+	// make string the inner html to print 
 	document.getElementById('missing-sounds').innerHTML = missingSoundsArray
 	document.getElementById('available-sounds').innerHTML = availableSoundsArray
 	document.getElementById('to-practice').innerHTML = toPracticeArray
