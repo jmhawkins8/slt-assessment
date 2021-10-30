@@ -64,7 +64,7 @@
 
       .radio-btn > i {
         color: #ffffff;
-        background-color: #1B90F2;
+        background-color: #0073CF;
         font-size: 20px;
         position: absolute;
         top: -15px;
@@ -87,8 +87,7 @@
       }
 
       .radio-btn .hobbies-icon i {
-        color: #8373e6;
-        color: #1B90F2;
+        color: #0073CF;
         line-height: 80px;
         font-size: 60px;
       }
@@ -102,7 +101,7 @@
       }
 
       .custom-radio input:checked + .radio-btn {
-        border: 3px solid #1B90F2;
+        border: 3px solid #0073CF;
 
       }
 
