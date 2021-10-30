@@ -37,7 +37,7 @@ var Results = letters.map((letter) => {
 function initiatePage() {
 	// hide results and soundtest
 	document.getElementById("results").style.display = "none";
-	//document.getElementById("sound-test").style.display = "none";
+	document.getElementById("sound-test").style.display = "none";
 	// Select all radios based on class .radio-btn
 	var radios = document.querySelectorAll(".radio-btn");
 
@@ -48,7 +48,7 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
-			//showSoundTest()
+			showSoundTest()
 
 		};
 	});
