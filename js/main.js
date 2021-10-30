@@ -95,9 +95,16 @@ function initiatePage() {
 // refresh page to current letter, images and pagination
 function updatePage() {
 	showSoundTest()
+
+	//scroll to top
+	document.body.scrollTop = 0; // For Safari
+  	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+  	// change letterrs to current letter
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
+	// update words under image
 	document.getElementById("word-start").innerHTML =
 		wordLibrary[letters[currentLetterPosition]].words[0];
 	document.getElementById("word-mid").innerHTML =
@@ -105,6 +112,7 @@ function updatePage() {
 	document.getElementById("word-end").innerHTML =
 		wordLibrary[letters[currentLetterPosition]].words[2];
 
+	// update images
 	document.getElementById("img-start").src =
 		"images/" + letters[currentLetterPosition] + "-start.png";
 	document.getElementById("img-mid").src =
@@ -181,8 +189,10 @@ function renderPagination() {
 
 		// navigate to the clicked letter
 		pageNumber.onclick = function() {
-			currentLetterPosition = key;
-			updatePage();
+			if(checkAllSelected()){
+				currentLetterPosition = key;
+				updatePage();
+			}
 		};
 		progressBlock.appendChild(pageNumber);
 		progressBar.appendChild(progressBlock);
@@ -190,7 +200,6 @@ function renderPagination() {
 }
 
 function selectRadios() {
-	//TODO: map radio selection to new sound test buttons
 	// Collect all radios
 	var allRadios = document.querySelectorAll(".all-radios");
 
@@ -199,6 +208,7 @@ function selectRadios() {
 		Results[currentLetterPosition].start,
 		Results[currentLetterPosition].middle,
 		Results[currentLetterPosition].end,
+		Results[currentLetterPosition].sound,
 	];
 
 	// mapping to convert the currentResults into an array for the radios

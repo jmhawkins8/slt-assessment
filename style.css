@@ -1,3 +1,14 @@
+
+/*Hide results and sound-test divs on start*/
+#sound-test {
+  display: none;
+}
+
+#results{
+  display: none;
+}
+
+
 .letter{
 		text-align: center;
 		font-size: 150px;
@@ -105,8 +116,6 @@
   display: inline;
 }
 }
-
-
 
 
 
