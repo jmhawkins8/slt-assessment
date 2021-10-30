@@ -100,22 +100,6 @@
         margin: 0 15px;
       }
 
-        .iframe-container{
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; 
-      height: 0;
-      }
-
-    .iframe-container iframe{
-      position: absolute;
-      top:25%;
-      left: 25%;
-      width: 50%;
-      height: 50%;
-      }
-
-
 @media all and (max-width: 769px){
 .jas-mobile{
   display: inline;
