@@ -37,8 +37,7 @@
 /*The circular button which is hidden (opacity:  0)
 And is quite large (50px), the transform makes it visible while it shrinks
 to normal size upon a click*/
-/*No idea what the >i does*/
-.radio-btn > i {
+.radio-circle {
   color: #ffffff;
   background-color: #0073cf;
   position: absolute;
@@ -53,7 +52,7 @@ to normal size upon a click*/
 }
 
 /*Style the icons within the buttons*/
-.hobbies-icon i {
+.hobbies-icon {
   color: #0073cf;
   line-height: 80px;
   font-size: 60px;
@@ -69,6 +68,7 @@ to normal size upon a click*/
   text-transform: uppercase;
 }
 
+/*When the custom-radio inputs are checked, make the opacity 1 and shrink to 1*/
 .custom-radio input:checked + .radio-btn > i {
   opacity: 1;
   transform: translateX(-50%) scale(1);

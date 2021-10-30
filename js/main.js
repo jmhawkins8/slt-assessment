@@ -47,7 +47,6 @@ function initiatePage() {
 			Results[currentLetterPosition][
 				radio.getAttribute("name")
 			] = JSON.parse(radio.getAttribute("value"));
-			console.log('clicked')
 			showSoundTest();
 		};
 	});
