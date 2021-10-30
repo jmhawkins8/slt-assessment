@@ -119,6 +119,21 @@ function updatePage() {
 function checkAllSelected() {
 	// reader be warned, this is a mind-fuck
 
+	// create a size 4 array of trues if unselected
+	let resultsSelected = [
+		Results[currentLetterPosition].start === null,
+		Results[currentLetterPosition].middle === null,
+		Results[currentLetterPosition].end === null,
+		Results[currentLetterPosition].sound === null,
+	];
+
+	let alerts = document.querySelectorAll(".button-validation")
+
+	alerts.forEach((alert, key) => {
+		resultsSelected[key] ? alert.style.display = 'block' : alert.style.display = 'none'
+	})
+	
+
 	// Are start, middle and end radios selected? returns true if all three are selected
 	const picturesSelected = !(
 		Results[currentLetterPosition].start === null ||
