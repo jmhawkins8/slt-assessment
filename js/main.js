@@ -38,7 +38,7 @@ function initiatePage() {
 	document.getElementById("results").style.display = "none";
 	document.getElementById("sound-test").style.display = "none";
 	// Select all radios based on class .radio-btn
-	var radios = document.querySelectorAll(".radio-btn");
+	var radios = document.querySelectorAll(".custom-radio");
 
 	// itterate through each class, and create a function that fires when clicked
 	radios.forEach((radio) => {
