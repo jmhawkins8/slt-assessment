@@ -95,95 +95,95 @@ const wordLibrary = {
 		words: ["", "Singing", "Ring"],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Pr: {
+	PR: {
 		words: ["Present", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Br: {
+	BR: {
 		words: ["Bread", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Fr: {
+	FR: {
 		words: ["Frog", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Tr: {
+	TR: {
 		words: ["Truck", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Dr: {
+	DR: {
 		words: ["Drum", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Cr: {
+	CR: {
 		words: ["Crab", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Gr: {
+	GR: {
 		words: ["Grape", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Bl: {
+	BL: {
 		words: ["Blue", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Pl: {
+	PL: {
 		words: ["Plane", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Cl: {
+	CL: {
 		words: ["Clap", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Gl: {
+	GL: {
 		words: ["Glue", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Fl: {
+	FL: {
 		words: ["Flower", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Sl: {
+	SL: {
 		words: ["Slide", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Sw: {
+	SW: {
 		words: ["Swing", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Sm: {
+	SM: {
 		words: ["Smile", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Sn: {
+	SN: {
 		words: ["Snail", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Sp: {
+	SP: {
 		words: ["Spider", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Sc: {
+	SC: {
 		words: ["Skateboard", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	St: {
+	ST: {
 		words: ["Stop", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Spr: {
+	SPR: {
 		words: ["Spring", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Str: {
+	STR: {
 		words: ["Straight", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Scr: {
+	SCR: {
 		words: ["Scratch", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
-	Scw: {
+	SCW: {
 		words: ["Square", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
