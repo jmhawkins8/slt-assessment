@@ -78,6 +78,16 @@ function initiatePage() {
 	updatePage()
 }
 
+function createCard(position){
+	console.log(Results[currentLetterPosition])
+	console.log(document.getElementById('card-'+position))
+	if (Results[currentLetterPosition][position] == null) {
+		document.getElementById('card-'+position).style.display = 'none'
+	} else {
+		document.getElementById('card-'+position).style.display = 'flex'
+	}
+}
+
 // refresh page to current letter, images and pagination
 function updatePage() {
 	showSoundTest()
@@ -89,6 +99,11 @@ function updatePage() {
   	// change letterrs to current letter
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
+
+	// Create the card depending on if there is a word available for that position
+	createCard('start')
+	createCard('middle')
+	createCard('end')
 
 	// update words under image
 	document.getElementById("word-start").innerHTML =
@@ -157,12 +172,17 @@ function checkAllSelected() {
 
 function showSoundTest() {
 	// Show or hide optional sound test if all are incorrect
+	// note that the nulls are included for situations where only 1 or 2 cards are shown
 	if (
-		Results[currentLetterPosition].start === false &&
-		Results[currentLetterPosition].middle === false &&
-		Results[currentLetterPosition].end === false
+		(Results[currentLetterPosition].start === false ||
+			Results[currentLetterPosition].start === null) &&
+		(Results[currentLetterPosition].middle === false ||
+			Results[currentLetterPosition].middle === null) &&
+		(Results[currentLetterPosition].end === false ||
+			Results[currentLetterPosition].end === null)
+
 	) {
-		// all results were false
+		// all results were false or null
 		document.getElementById("sound-test").style.display = "inline";
 	} else {
 		// hide sound test
@@ -248,6 +268,7 @@ function generateOutput() {
 
 	// Go through each letter and add to either available, missing, or endMissing
 	// note: middle is not included in the scoring
+	// TODO: Fix scoring
 	Results.forEach((letter) => {
 		console.log(letter)
 		if (letter.start == true && letter.end == true) {

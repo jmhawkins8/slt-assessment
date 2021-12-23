@@ -3,8 +3,6 @@
 
 const letters = ["S", "SM", "SN", "SP", "ST", "SW", "K", "G", "SK", "L", "SL", "PL", "BL", "FL", "KL", "GL", "F", "V", "H", "P", "B", "T", "D", "Sh", "M", "N", "Y", "W", "Z", "Ch", "J", "R", "PR", "BR", "FR", "TR", "DR", "KR", "GR", "Th", "Thh", "Ng", "SPR", "STR", "SCR", "SKW"];
 
-//const letters = ["S", "SM"]
-
 // const singleSounds = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z","Sh", "Ch", "J", "Th", "Thh", "R", "W", "Y", "Ng"]
 
 // Changing the wordLibrary below the images to match
