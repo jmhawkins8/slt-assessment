@@ -1,121 +1,75 @@
-.letter{
-		text-align: center;
-		font-size: 150px;
-    font-family: 'Mali', cursive;
-    padding: 20px 0;
-		}		
-
-    .jas-font h1{
-      font-family: 'Mali', cursive;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    .jas-text{
-    text-align: center;
-    font-size: 40px;
-    font-family: 'Mali', cursive;
-    padding: 10px 0;
-
-    }
-
-		.radio-container{
-			display: flex;
-			justify-content: space-around;
-		}
-
-      .radio-buttons {
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      .custom-radio input {
-        display: none;
-      }
-
-      .radio-btn {
-        margin: 10px;
-        width: 150px;
-        height: 150px;
-        border: 3px solid transparent;
-        display: inline-block;
-        border-radius: 10px;
-        position: relative;
-        text-align: center;
-        box-shadow: 0 0 20px #c3c3c367;
-        cursor: pointer;
-      }
-
-      .radio-btn > i {
-        color: #ffffff;
-        background-color: #1B90F2;
-        font-size: 20px;
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%) scale(4);
-        border-radius: 50px;
-        padding: 3px;
-        transition: 0.2s;
-        pointer-events: none;
-        opacity: 0;
-      }
-
-      .radio-btn .hobbies-icon {
-        width: 80px;
-        height: 80px;
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .radio-btn .hobbies-icon i {
-        color: #8373e6;
-        color: #1B90F2;
-        line-height: 80px;
-        font-size: 60px;
-      }
-
-      .radio-btn .hobbies-icon h3 {
-        color: #000;
-        font-family: "Raleway", sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        text-transform: uppercase;
-      }
-
-      .custom-radio input:checked + .radio-btn {
-        border: 3px solid #1B90F2;
-
-      }
-
-      .custom-radio input:checked + .radio-btn > i {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-      }
-
-      .custom-radio{
-        margin: 0 15px;
-      }
-
-
-@media all and (max-width: 769px){
-.jas-mobile{
-  display: inline;
-}
+/*Hide results and sound-test divs on start*/
+#sound-test {
+  display: none;
 }
 
+#results {
+  display: none;
+}
 
+.button-validation {
+  display: none;
+}
 
+/*Custom Font size for main letter*/
+.letter {
+  font-size: 150px;
+}
 
+/*Hide the default radio input button*/
+.custom-radio input {
+  display: none;
+}
 
+/*The bounding box that the button is within*/
+.radio-btn {
+  width: 130px;
+  height: 130px;
+  border: 3px solid transparent;
+  display: inline-block;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 0 20px #c3c3c367;
+  cursor: pointer;
+}
 
+/*The circular button which is hidden (opacity:  0)
+And is quite large (50px), the transform makes it visible while it shrinks
+to normal size upon a click*/
+.radio-circle {
+  color: #ffffff;
+  background-color: #0073cf;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) scale(4);
+  border-radius: 50px;
+  padding: 3px;
+  transition: 0.2s;
+  pointer-events: none;
+  opacity: 0;
+}
 
+/*Style the icons within the buttons*/
+.hobbies-icon {
+  color: #0073cf;
+  line-height: 80px;
+  font-size: 60px;
+}
 
+/*Style the text within the buttons*/
+/*This could probably be transferred out to bootstrap*/
+.hobbies-icon h3 {
+  color: #0073cf;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
 
-
-
-
-
+/*When the custom-radio inputs are checked, make the opacity 1 and shrink to 1*/
+.custom-radio input:checked + .radio-btn > i {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}

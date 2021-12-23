@@ -6,11 +6,13 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+		<link rel="stylesheet" type="text/css" href="modified-bootstrap.css">
 		<script src="https://kit.fontawesome.com/84a0627b3e.js" crossorigin="anonymous"></script>
 		<!-- Custom CSS -->
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<!-- Javascript -->
+		<script type="text/javascript" src="js/lettersLibrary.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,113 +21,162 @@
 	</head>
 	<body onload="initiatePage()">
 		<nav class="navbar-light bg-white py-4">
-			<div class="container-fluid text-center ">
-				<span><img src="images/logo.png"></span>
+			<div class="container-fluid text-center">
+				<span><img class= "img-fluid" src="images/logo.png"></span>
 			</div>
 		</nav>
 		<div id="questions">
 			
-			<div class="jas-font"><h1>Let's play a game! Can you name all the pictures below?...</h1></div>
+			<div class="text-center fs-3 px-2"><p>Let's play a game! Can you name all the pictures below?...</p></div>
 			<div>
-				<h1 class="letter" id="main-letter">P</h1>
+				<p class="letter text-center" id="main-letter">P</p>
 			</div>
 			<!-- Container Fluid Means that the container stretches the entire span -->
-			<div class="container-fluid jas-mobile">
-				<div class="row">
+			<div class="container-fluid">
+				<div class="row justify-content-center">
 					<!-- the 'sm' makes the columns collapse when screen sizes are below 576px -->
-					<div class="col-sm">
+					<div class="col-sm justify-content-center" id='card-start'>
 						<!-- mb-3 addes a margin of 3 below the card -->
-						<div class="card mb-3">
+						<div class="card mb-3" >
 							<img src="" class="card-img-top" id="img-start" alt="..." />
-							<h1 class="jas-text" id="word-start">Pen</h1>
+							<h1 class="fs-1 text-center" id="word-start">Pen</h1>
 							<div class="card-body">
 								<div class="radio-container">
-									<div class="radio-buttons">
-										<label class="custom-radio">
+									<div class="radio-buttons text-center">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="start" value=true>
 											<input type="radio" class="all-radios" name="radio1" id="radio-start-true">
-											<span class="radio-btn" name="start" value=true
-												><i class="fas fa-check-circle"></i>
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-grin-beam"></i>
-													<h3>Nice Work!</h3>
+													<h3>Nice Work</h3>
 												</div>
 											</span>
 										</label>
-										<label class="custom-radio">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="start" value=false>
 											<input type="radio" class="all-radios" name="radio1" id="radio-start-false" />
-											<span class="radio-btn" name="start" value=false
-												><i class="fas fa-check-circle"></i>
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-smile-wink"></i>
-													<h3>Not<br>Yet</h3>
+													<h3>Not Yet</h3>
 												</div>
 											</span>
 										</label>
 									</div>
 								</div>
+								<div class="alert alert-primary button-validation mx-4" id="validation-start">
+								        This input is missing
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm">
-						<div class="card mb-3">
+					<div class="col-sm justify-content-center" id = "card-middle">
+						<div class="card mb-3" >
 							<img src="" class="card-img-top" id="img-mid" alt="..." />
-							<h1 class="jas-text" id="word-mid">Apple</h1>
+							<h1 class="fs-1 text-center" id="word-mid">Apple</h1>
 							<div class="card-body">
 								<div class="radio-container">
-									<div class="radio-buttons">
-										<label class="custom-radio">
+									<div class="radio-buttons text-center">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="middle" value=true>
 											<input type="radio" class="all-radios" name="radio2" id="radio-mid-true">
-											<span class="radio-btn" name="middle" value=true
-												><i class="fas fa-check-circle"></i>
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-grin-beam"></i>
-													<h3>Nice Work!</h3>
+													<h3>Nice Work</h3>
 												</div>
 											</span>
 										</label>
-										<label class="custom-radio">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="middle" value=false>
 											<input type="radio" class="all-radios" name="radio2" id="radio-mid-false" />
-											<span class="radio-btn" name="middle" value=false
-												><i class="fas fa-check-circle"></i>
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-smile-wink"></i>
-													<h3>Not<br>Yet</h3>
+													<h3>Not Yet</h3>
 												</div>
 											</span>
 										</label>
 									</div>
 								</div>
+								<div class="alert alert-primary button-validation mx-4" id="validation-mid">
+								        This input is missing
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm">
+					<div class="col-sm justify-content-center"  id="card-end">
 						<div class="card mb-3">
 							<img src="" class="card-img-top" id="img-end" alt="..." />
-							<h1 class="jas-text" id="word-end">Cup</h1>
+							<h1 class="fs-1 text-center" id="word-end">Cup</h1>
 							<div class="card-body">
 								<div class="radio-container">
-									<div class="radio-buttons">
-										<label class="custom-radio">
+									<div class="radio-buttons text-center">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="end" value=true>
 											<input type="radio" class="all-radios" name="radio3" id="radio-end-true">
-											<span class="radio-btn" name="end" value=true
-												><i class="fas fa-check-circle"></i>
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-grin-beam"></i>
-													<h3>Nice Work!</h3>
+													<h3>Nice Work</h3>
 												</div>
 											</span>
 										</label>
-										<label class="custom-radio">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="end" value=false>
 											<input type="radio" class="all-radios" name="radio3" id="radio-end-false" />
-											<span class="radio-btn" name="end" value=false
-												><i class="fas fa-check-circle"></i>
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
 												<div class="hobbies-icon">
 													<i class="far fa-smile-wink"></i>
-													<h3>Not<br>Yet</h3>
+													<h3>Not Yet</h3>
 												</div>
 											</span>
 										</label>
 									</div>
+								</div>
+								<div class="alert alert-primary button-validation mx-4" id="validation-end">
+								        This input is missing
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="sound-test">
+					<div class="col-md-6 offset-md-3">
+						<div class="card mb-3">
+							<h1 class="fs-1 text-center">Let's Try Again With The Sound Isolated!!</h1>
+							<div class="ratio ratio-16x9">
+								<iframe id="vidlink" src="" title="" allowfullscreen></iframe>
+							</div>
+							
+							<div class="card-body">
+								<div class="radio-container">
+									<div class="radio-buttons text-center">
+										<label class="custom-radio px-xxl-4 px-xl-2" name="sound" value=true>
+											<input type="radio" class="all-radios" name="radio4" id="radio-sound-true">
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
+												<div class="hobbies-icon">
+													<i class="far fa-grin-beam"></i>
+													<h3>Nice Work</h3>
+												</div>
+											</span>
+										</label>
+										<label class="custom-radio px-xxl-4 px-xl-2" name="sound" value=false>
+											<input type="radio" class="all-radios" name="radio4" id="radio-sound-false" />
+											<span class="radio-btn"
+												><i class="radio-circle fas fa-check-circle"></i>
+												<div class="hobbies-icon">
+													<i class="far fa-smile-wink"></i>
+													<h3>Not Yet</h3>
+												</div>
+											</span>
+										</label>
+									</div>
+								</div>
+								<div class="alert alert-primary button-validation mx-4" id="validation-sound">
+								        This input is missing
 								</div>
 							</div>
 						</div>
@@ -134,23 +185,25 @@
 			</div>
 			
 			<nav aria-label="...">
-				<ul class="pagination justify-content-center">
+				<ul class="pagination pagination-lg justify-content-center">
 					<li class="page-item">
-						<a class="page-link" id="previous-button" href="#">Previous</a>
+						<a class="page-link " id="previous-button" href="#">Previous</a>
 					</li>
 					<li class="page-item active">
 						<a class="page-link" id="next-button" href="#">Next</a>
 					</li>
 				</ul>
 				<div class="col-md-12 text-center py-2">
-					<button type="button" class="btn btn-outline-success" id="submit-button">Submit</button>
+					<button type="button" class="btn btn-outline-warning" id="submit-button">Submit</button>
 				</div>
 			</nav>
 			<nav aria-label="...">
-				<ul class="pagination justify-content-center pt-5" id="progress-bar">
+				<!-- <ul class="pagination pagination-sm d-grid d-sm-flex justify-content-center pt-5" id="progress-bar"> -->
+				<ul class="pagination pagination-sm d-grid justify-content-center pt-5" id="progress-bar">
 				</ul>
 			</nav>
 		</div>
+
 		<div id="results" class="">
 			<div class="list-group px-3">
 				<a class="list-group-item list-group-item-action flex-column align-items-start">
@@ -161,15 +214,27 @@
 				</a>
 				<a class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">Sounds To Practice</h5>
+						<h5 class="mb-1">Sounds to work on at start of word</h5>
 					</div>
-					<p class="mb-1" id="to-practice"></p>
+					<p class="mb-1" id="start-missing"></p>
 				</a>
 				<a class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">Sounds Missing</h5>
+						<h5 class="mb-1">Sounds to work on at end of word</h5>
 					</div>
-					<p class="mb-1" id="missing-sounds"></p>
+					<p class="mb-1" id="end-missing"></p>
+				</a>
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Not Yet Available</h5>
+					</div>
+					<p class="mb-1" id="not-available"></p>
+				</a>
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Not Yet Assessed</h5>
+					</div>
+					<p class="mb-1" id="not-assessed"></p>
 				</a>
 			</div>
 			<div class="col-md-12 text-center py-2">
