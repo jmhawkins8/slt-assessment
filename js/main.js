@@ -271,15 +271,15 @@ function generateOutput() {
 	// TODO: Fix scoring
 	Results.forEach((letter) => {
 		console.log(letter)
-		if (letter.start == true && letter.end == true) {
+		if ((letter.start == true || letter.start == null) && (letter.end == true || letter.end == null)) {
 			availableSounds.push(letter);
-		} else if (letter.start == 'notSelected' && letter.end == 'notSelected' && letter.middle == 'notSelected'){
+		} else if ((letter.start == 'notSelected' || letter.start == null) && (letter.end == 'notSelected' || letter.end == null) && (letter.middle == 'notSelected' || letter.middle == null)){
 			notAssessed.push(letter)
-		} else if (letter.start == false && letter.end == false && letter.middle == false && letter.sound == false) {
+		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null) && (letter.middle == false || letter.middle == null) && (letter.sound == false || letter.sound == null)) {
 			notAvailable.push(letter)
-		} else if (letter.start == false && letter.end == false) {
+		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null)) {
 			startMissing.push(letter);
-		} else if (letter.start == true) {
+		} else if (letter.start == true || letter.null == null) {
 			endMissing.push(letter)
 		} else {
 			startMissing.push(letter);
