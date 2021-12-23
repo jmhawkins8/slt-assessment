@@ -187,10 +187,10 @@
 			<nav aria-label="...">
 				<ul class="pagination pagination-lg justify-content-center">
 					<li class="page-item">
-						<a class="page-link " id="previous-button" href="#previous-button">Previous</a>
+						<a class="page-link " id="previous-button" href="#">Previous</a>
 					</li>
 					<li class="page-item active">
-						<a class="page-link" id="next-button" href="#next-button">Next</a>
+						<a class="page-link" id="next-button" href="#">Next</a>
 					</li>
 				</ul>
 				<div class="col-md-12 text-center py-2">
@@ -198,10 +198,12 @@
 				</div>
 			</nav>
 			<nav aria-label="...">
-				<ul class="pagination pagination-sm d-grid d-sm-flex justify-content-center pt-5" id="progress-bar">
+				<!-- <ul class="pagination pagination-sm d-grid d-sm-flex justify-content-center pt-5" id="progress-bar"> -->
+				<ul class="pagination pagination-sm d-grid justify-content-center pt-5" id="progress-bar">
 				</ul>
 			</nav>
 		</div>
+
 		<div id="results" class="">
 			<div class="list-group px-3">
 				<a class="list-group-item list-group-item-action flex-column align-items-start">
@@ -212,15 +214,27 @@
 				</a>
 				<a class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">Sounds To Practice</h5>
+						<h5 class="mb-1">Sounds to work on at start of word</h5>
 					</div>
-					<p class="mb-1" id="to-practice"></p>
+					<p class="mb-1" id="start-missing"></p>
 				</a>
 				<a class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1">Sounds Missing</h5>
+						<h5 class="mb-1">Sounds to work on at end of word</h5>
 					</div>
-					<p class="mb-1" id="missing-sounds"></p>
+					<p class="mb-1" id="end-missing"></p>
+				</a>
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Not Yet Available</h5>
+					</div>
+					<p class="mb-1" id="not-available"></p>
+				</a>
+				<a class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Not Yet Assessed</h5>
+					</div>
+					<p class="mb-1" id="not-assessed"></p>
 				</a>
 			</div>
 			<div class="col-md-12 text-center py-2">

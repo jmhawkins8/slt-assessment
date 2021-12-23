@@ -239,19 +239,29 @@ function selectRadios() {
 
 function generateOutput() {
 	// Empty arrays for collecting human readable result data
-	var availableSounds = [];
-	var missingSounds = [];
+	let availableSounds = [];
+	let startMissing = [];
 	// by Jasper
-	var toPractice = [];
+	let endMissing = [];
+	let notAvailable = []
+	let notAssessed = []
 
-	// Go through each letter and add to either available, missing, or toPractice
+	// Go through each letter and add to either available, missing, or endMissing
+	// note: middle is not included in the scoring
 	Results.forEach((letter) => {
-		if (letter.start && letter.middle && letter.end) {
+		console.log(letter)
+		if (letter.start && letter.end) {
 			availableSounds.push(letter);
-		} else if (!(letter.start || letter.middle || letter.end)) {
-			missingSounds.push(letter);
+		} else if (letter.start == null && letter.end == null && letter.middle == null){
+			notAssessed.push(letter)
+		} else if (!(letter.start || letter.end || letter.middle || letter.sound)) {
+			notAvailable.push(letter)
+		} else if (!(letter.start || letter.end)) {
+			startMissing.push(letter);
+		} else if (letter.start) {
+			endMissing.push(letter)
 		} else {
-			toPractice.push(letter);
+			startMissing.push(letter);
 		}
 	});
 
@@ -260,7 +270,7 @@ function generateOutput() {
 	document.getElementById("results").style.display = "inline";
 
 	// Convert array of letters to a single string joined by commas (,)
-	const missingSoundsArray = missingSounds
+	const startMissingArray = startMissing
 		.map((sound) => {
 			return sound.letter;
 		})
@@ -272,16 +282,28 @@ function generateOutput() {
 		})
 		.join(",");
 
-	const toPracticeArray = toPractice
+	const endMissingArray = endMissing
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
+
+	const notAvailableArray = notAvailable
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
+
+	const notAssessedArray = notAssessed
 		.map((sound) => {
 			return sound.letter;
 		})
 		.join(",");
 
 	// make string the inner html to print
-	document.getElementById("missing-sounds").innerHTML = missingSoundsArray;
-	document.getElementById(
-		"available-sounds"
-	).innerHTML = availableSoundsArray;
-	document.getElementById("to-practice").innerHTML = toPracticeArray;
+	document.getElementById("start-missing").innerHTML = startMissingArray;
+	document.getElementById("available-sounds").innerHTML = availableSoundsArray;
+	document.getElementById("end-missing").innerHTML = endMissingArray;
+	document.getElementById("not-available").innerHTML = notAvailableArray;
+	document.getElementById("not-assessed").innerHTML = notAssessedArray;
 }
