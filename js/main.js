@@ -26,10 +26,10 @@ currentLetterPosition = 0;
 var Results = letters.map((letter) => {
 	return {
 		letter: letter,
-		start: null,
-		middle: null,
-		end: null,
-		sound: null,
+		...wordLibrary[letter].words[0] == "" ? {start: null} : {start: 'notSelected'},
+		...wordLibrary[letter].words[1] == "" ? {middle: null} : {middle: 'notSelected'},
+		...wordLibrary[letter].words[2] == "" ? {end: null} : {end: 'notSelected'},
+		sound: 'notSelected',
 	};
 });
 
@@ -121,10 +121,10 @@ function checkAllSelected() {
 
 	// create a size 4 array of trues if unselected
 	let resultsSelected = [
-		Results[currentLetterPosition].start === null,
-		Results[currentLetterPosition].middle === null,
-		Results[currentLetterPosition].end === null,
-		Results[currentLetterPosition].sound === null,
+		Results[currentLetterPosition].start === 'notSelected',
+		Results[currentLetterPosition].middle === 'notSelected',
+		Results[currentLetterPosition].end === 'notSelected',
+		Results[currentLetterPosition].sound === 'notSelected',
 	];
 
 	let alerts = document.querySelectorAll(".button-validation")
@@ -136,9 +136,9 @@ function checkAllSelected() {
 
 	// Are start, middle and end radios selected? returns true if all three are selected
 	const picturesSelected = !(
-		Results[currentLetterPosition].start === null ||
-		Results[currentLetterPosition].middle === null ||
-		Results[currentLetterPosition].end === null
+		Results[currentLetterPosition].start === 'notSelected' ||
+		Results[currentLetterPosition].middle === 'notSelected' ||
+		Results[currentLetterPosition].end === 'notSelected'
 	)
 
 	// Is the sound test available? returns true if sound test is available
@@ -149,7 +149,7 @@ function checkAllSelected() {
 	)
 
 	// if sound test not available, or available and selected we want it to be true
-	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != null)
+	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != 'notSelected')
 
 	// retrun true if all available radio buttons are selected
 	return (picturesSelected && soundTestSelected)
@@ -250,15 +250,15 @@ function generateOutput() {
 	// note: middle is not included in the scoring
 	Results.forEach((letter) => {
 		console.log(letter)
-		if (letter.start && letter.end) {
+		if (letter.start == true && letter.end == true) {
 			availableSounds.push(letter);
-		} else if (letter.start == null && letter.end == null && letter.middle == null){
+		} else if (letter.start == 'notSelected' && letter.end == 'notSelected' && letter.middle == 'notSelected'){
 			notAssessed.push(letter)
-		} else if (!(letter.start || letter.end || letter.middle || letter.sound)) {
+		} else if (letter.start == false && letter.end == false && letter.middle == false && letter.sound == false) {
 			notAvailable.push(letter)
-		} else if (!(letter.start || letter.end)) {
+		} else if (letter.start == false && letter.end == false) {
 			startMissing.push(letter);
-		} else if (letter.start) {
+		} else if (letter.start == true) {
 			endMissing.push(letter)
 		} else {
 			startMissing.push(letter);

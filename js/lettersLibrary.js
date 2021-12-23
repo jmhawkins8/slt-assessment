@@ -1,5 +1,9 @@
 // Add new letters as needed
-const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch", "J", "Th", "Thh", "R", "W", "Y", "Ng", "PR", "BR", "FR", "TR", "DR", "CR", "GR", "BL", "PL", "CL", "GL", "FL", "SL", "SW", "SM", "SN", "SP", "SC", "ST", "SPR", "STR", "SCR", "SKW"];
+//const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch", "J", "Th", "Thh", "R", "W", "Y", "Ng", "PR", "BR", "FR", "TR", "DR", "CR", "GR", "BL", "PL", "CL", "GL", "FL", "SL", "SW", "SM", "SN", "SP", "SC", "ST", "SPR", "STR", "SCR", "SKW"];
+
+const letters = ["S", "SM", "SN", "SP", "ST", "SW", "K", "G", "SK", "L", "SL", "PL", "BL", "FL", "KL", "GL", "F", "V", "H", "P", "B", "T", "D", "Sh", "M", "N", "Y", "W", "Z", "Ch", "J", "R", "PR", "BR", "FR", "TR", "DR", "KR", "GR", "Th", "Thh", "Ng", "SPR", "STR", "SCR", "SKW"];
+
+//const letters = ["S", "SM"]
 
 // const singleSounds = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z","Sh", "Ch", "J", "Th", "Thh", "R", "W", "Y", "Ng"]
 
@@ -79,6 +83,10 @@ const wordLibrary = {
 	},
 	Th: {
 		words: ["Do you like this one? or that one?", "Feather", ""],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	Thh: {
+		words: ["The", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
 	R: {
@@ -187,6 +195,22 @@ const wordLibrary = {
 	},
 	SCW: {
 		words: ["Square", "", ""],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	SK: {
+		words: ["Skate", "", ""],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	SKW: {
+		words: ["Square", "", ""],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	KL: {
+		words: ["Clown", "", ""],
+		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+	},
+	KR: {
+		words: ["Crown", "", ""],
 		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
 	},
 };
