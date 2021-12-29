@@ -26,10 +26,10 @@ currentLetterPosition = 0;
 var Results = letters.map((letter) => {
 	return {
 		letter: letter,
-		start: null,
-		middle: null,
-		end: null,
-		sound: null,
+		...wordLibrary[letter].words[0] == "" ? {start: null} : {start: 'notSelected'},
+		...wordLibrary[letter].words[1] == "" ? {middle: null} : {middle: 'notSelected'},
+		...wordLibrary[letter].words[2] == "" ? {end: null} : {end: 'notSelected'},
+		sound: 'notSelected',
 	};
 });
 
@@ -78,6 +78,16 @@ function initiatePage() {
 	updatePage()
 }
 
+function createCard(position){
+	console.log(Results[currentLetterPosition])
+	console.log(document.getElementById('card-'+position))
+	if (Results[currentLetterPosition][position] == null) {
+		document.getElementById('card-'+position).style.display = 'none'
+	} else {
+		document.getElementById('card-'+position).style.display = 'flex'
+	}
+}
+
 // refresh page to current letter, images and pagination
 function updatePage() {
 	showSoundTest()
@@ -89,6 +99,11 @@ function updatePage() {
   	// change letterrs to current letter
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
+
+	// Create the card depending on if there is a word available for that position
+	createCard('start')
+	createCard('middle')
+	createCard('end')
 
 	// update words under image
 	document.getElementById("word-start").innerHTML =
@@ -121,10 +136,10 @@ function checkAllSelected() {
 
 	// create a size 4 array of trues if unselected
 	let resultsSelected = [
-		Results[currentLetterPosition].start === null,
-		Results[currentLetterPosition].middle === null,
-		Results[currentLetterPosition].end === null,
-		Results[currentLetterPosition].sound === null,
+		Results[currentLetterPosition].start === 'notSelected',
+		Results[currentLetterPosition].middle === 'notSelected',
+		Results[currentLetterPosition].end === 'notSelected',
+		Results[currentLetterPosition].sound === 'notSelected',
 	];
 
 	let alerts = document.querySelectorAll(".button-validation")
@@ -136,9 +151,9 @@ function checkAllSelected() {
 
 	// Are start, middle and end radios selected? returns true if all three are selected
 	const picturesSelected = !(
-		Results[currentLetterPosition].start === null ||
-		Results[currentLetterPosition].middle === null ||
-		Results[currentLetterPosition].end === null
+		Results[currentLetterPosition].start === 'notSelected' ||
+		Results[currentLetterPosition].middle === 'notSelected' ||
+		Results[currentLetterPosition].end === 'notSelected'
 	)
 
 	// Is the sound test available? returns true if sound test is available
@@ -149,7 +164,7 @@ function checkAllSelected() {
 	)
 
 	// if sound test not available, or available and selected we want it to be true
-	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != null)
+	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != 'notSelected')
 
 	// retrun true if all available radio buttons are selected
 	return (picturesSelected && soundTestSelected)
@@ -157,12 +172,17 @@ function checkAllSelected() {
 
 function showSoundTest() {
 	// Show or hide optional sound test if all are incorrect
+	// note that the nulls are included for situations where only 1 or 2 cards are shown
 	if (
-		Results[currentLetterPosition].start === false &&
-		Results[currentLetterPosition].middle === false &&
-		Results[currentLetterPosition].end === false
+		(Results[currentLetterPosition].start === false ||
+			Results[currentLetterPosition].start === null) &&
+		(Results[currentLetterPosition].middle === false ||
+			Results[currentLetterPosition].middle === null) &&
+		(Results[currentLetterPosition].end === false ||
+			Results[currentLetterPosition].end === null)
+
 	) {
-		// all results were false
+		// all results were false or null
 		document.getElementById("sound-test").style.display = "inline";
 	} else {
 		// hide sound test
@@ -239,19 +259,30 @@ function selectRadios() {
 
 function generateOutput() {
 	// Empty arrays for collecting human readable result data
-	var availableSounds = [];
-	var missingSounds = [];
+	let availableSounds = [];
+	let startMissing = [];
 	// by Jasper
-	var toPractice = [];
+	let endMissing = [];
+	let notAvailable = []
+	let notAssessed = []
 
-	// Go through each letter and add to either available, missing, or toPractice
+	// Go through each letter and add to either available, missing, or endMissing
+	// note: middle is not included in the scoring
+	// TODO: Fix scoring
 	Results.forEach((letter) => {
-		if (letter.start && letter.middle && letter.end) {
+		console.log(letter)
+		if ((letter.start == true || letter.start == null) && (letter.end == true || letter.end == null)) {
 			availableSounds.push(letter);
-		} else if (!(letter.start || letter.middle || letter.end)) {
-			missingSounds.push(letter);
+		} else if ((letter.start == 'notSelected' || letter.start == null) && (letter.end == 'notSelected' || letter.end == null) && (letter.middle == 'notSelected' || letter.middle == null)){
+			notAssessed.push(letter)
+		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null) && (letter.middle == false || letter.middle == null) && (letter.sound == false || letter.sound == null)) {
+			notAvailable.push(letter)
+		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null)) {
+			startMissing.push(letter);
+		} else if (letter.start == true || letter.null == null) {
+			endMissing.push(letter)
 		} else {
-			toPractice.push(letter);
+			startMissing.push(letter);
 		}
 	});
 
@@ -260,7 +291,7 @@ function generateOutput() {
 	document.getElementById("results").style.display = "inline";
 
 	// Convert array of letters to a single string joined by commas (,)
-	const missingSoundsArray = missingSounds
+	const startMissingArray = startMissing
 		.map((sound) => {
 			return sound.letter;
 		})
@@ -272,16 +303,28 @@ function generateOutput() {
 		})
 		.join(",");
 
-	const toPracticeArray = toPractice
+	const endMissingArray = endMissing
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
+
+	const notAvailableArray = notAvailable
+		.map((sound) => {
+			return sound.letter;
+		})
+		.join(",");
+
+	const notAssessedArray = notAssessed
 		.map((sound) => {
 			return sound.letter;
 		})
 		.join(",");
 
 	// make string the inner html to print
-	document.getElementById("missing-sounds").innerHTML = missingSoundsArray;
-	document.getElementById(
-		"available-sounds"
-	).innerHTML = availableSoundsArray;
-	document.getElementById("to-practice").innerHTML = toPracticeArray;
+	document.getElementById("start-missing").innerHTML = startMissingArray;
+	document.getElementById("available-sounds").innerHTML = availableSoundsArray;
+	document.getElementById("end-missing").innerHTML = endMissingArray;
+	document.getElementById("not-available").innerHTML = notAvailableArray;
+	document.getElementById("not-assessed").innerHTML = notAssessedArray;
 }
