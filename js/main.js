@@ -195,6 +195,14 @@ function showSoundTest() {
 }
 
 function renderPagination() {
+
+	document.getElementById('sound-navigation').style.display = 'none'
+	var showNavButton = document.getElementById("show-nav");
+	showNavButton.onclick = function() {
+		document.getElementById('sound-navigation').style.display = 'inline'
+	}
+
+
 	var progressBar = document.getElementById("progress-bar");
 	// delete internal HTML
 	progressBar.replaceChildren();
@@ -281,6 +289,8 @@ function generateOutput() {
 			notAssessed.push(letter)
 		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null) && (letter.middle == false || letter.middle == null) && (letter.sound == false || letter.sound == null)) {
 			notAvailable.push(letter)
+		} else if ((letter.start == null) && (letter.end == false || letter.end == null)) {
+			endMissing.push(letter);
 		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null)) {
 			startMissing.push(letter);
 		} else if ((letter.start == true || letter.null == null) && (letter.end == false || letter.end == null)){

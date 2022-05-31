@@ -96,7 +96,7 @@ const wordLibrary = {
 		videoLink: "https://www.youtube.com/embed/IzAMNVHdnuY",
 	},
 	Ng: {
-		words: ["", "Si<u><b>ng</b></u>ing", "Ri<u><b>ng</b></u>"],
+		words: ["", "Si<u><b>ng</b></u>ing", "Wi<u><b>ng</b></u>"],
 		videoLink: "https://www.youtube.com/embed/tZbg1RvU2RY",
 	},
 	PR: {
