@@ -100,6 +100,10 @@ function updatePage() {
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
+	// determine how many cards available
+/*	let emptyWords = wordLibrary[letters[currentLetterPosition]].words.filter(word => word == '').length
+	console.log(emptyWords)*/
+
 	// Create the card depending on if there is a word available for that position
 	createCard('start')
 	createCard('middle')
@@ -191,6 +195,14 @@ function showSoundTest() {
 }
 
 function renderPagination() {
+
+	document.getElementById('sound-navigation').style.display = 'none'
+	var showNavButton = document.getElementById("show-nav");
+	showNavButton.onclick = function() {
+		document.getElementById('sound-navigation').style.display = 'inline'
+	}
+
+
 	var progressBar = document.getElementById("progress-bar");
 	// delete internal HTML
 	progressBar.replaceChildren();
@@ -277,9 +289,11 @@ function generateOutput() {
 			notAssessed.push(letter)
 		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null) && (letter.middle == false || letter.middle == null) && (letter.sound == false || letter.sound == null)) {
 			notAvailable.push(letter)
+		} else if ((letter.start == null) && (letter.end == false || letter.end == null)) {
+			endMissing.push(letter);
 		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null)) {
 			startMissing.push(letter);
-		} else if (letter.start == true || letter.null == null) {
+		} else if ((letter.start == true || letter.null == null) && (letter.end == false || letter.end == null)){
 			endMissing.push(letter)
 		} else {
 			startMissing.push(letter);
