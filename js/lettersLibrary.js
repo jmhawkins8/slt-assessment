@@ -1,7 +1,7 @@
 // Add new letters as needed
 //const letters = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z", "Sh", "Ch", "J", "Th", "Thh", "R", "W", "Y", "Ng", "PR", "BR", "FR", "TR", "DR", "CR", "GR", "BL", "PL", "CL", "GL", "FL", "SL", "SW", "SM", "SN", "SP", "SC", "ST", "SPR", "STR", "SCR", "SKW"];
 
-const letters = ["S", "SM", "SN", "SP", "ST", "SW", "K", "G", "SK", "L", "SL", "PL", "BL", "FL", "CL", "GL", "F", "V", "H", "P", "B", "T", "D", "Sh", "M", "N", "Y", "W", "Z", "Ch", "J", "R", "PR", "BR", "FR", "TR", "DR", "CR", "GR", "Th", "TH", "Ng", ];
+const letters = ["S", "SM", "SN", "SP", "ST", "SW", "K", "G", "SK", "L", "SL", "PL", "BL", "FL", "CL", "GL", "F", "V", "H", "P", "B", "T", "D", "Sh", "M", "N", "Y", "W", "Z", "Ch", "J", "R", "PR", "BR", "FR", "TR", "DR", "CR", "GR", "Thh", "TH", "Ng", ];
 
 // const singleSounds = ["P", "B", "T", "D", "K", "G", "F", "V", "M", "N", "L", "H", "S", "Z","Sh", "Ch", "J", "Th", "Thh", "R", "W", "Y", "Ng"]
 
@@ -75,12 +75,12 @@ const wordLibrary = {
 		words: ["Juice", "Magic", "Fridge"],
 		videoLink: "https://www.youtube.com/embed/iC2J2aJZkEk",
 	},
-	Th: {
+	Thh: {
 		words: ["Thumb", "Birthday", "Bath"],
 		videoLink: "https://www.youtube.com/embed/x_L6LM7oLzI",
 	},
 	TH: {
-		words: ["Do you like this one? or that one?", "Feather", ""],
+		words: ["Do you like <u><b>this</b></u> one, or <u><b>that</b></u> one?", "Feather", ""],
 		videoLink: "https://www.youtube.com/embed/ZrhRT5Ix6do",
 	},
 	R: {
