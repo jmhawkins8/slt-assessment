@@ -100,6 +100,10 @@ function updatePage() {
 	document.getElementById("main-letter").innerHTML =
 		letters[currentLetterPosition];
 
+	// determine how many cards available
+/*	let emptyWords = wordLibrary[letters[currentLetterPosition]].words.filter(word => word == '').length
+	console.log(emptyWords)*/
+
 	// Create the card depending on if there is a word available for that position
 	createCard('start')
 	createCard('middle')
@@ -279,7 +283,7 @@ function generateOutput() {
 			notAvailable.push(letter)
 		} else if ((letter.start == false || letter.start == null) && (letter.end == false || letter.end == null)) {
 			startMissing.push(letter);
-		} else if (letter.start == true || letter.null == null) {
+		} else if ((letter.start == true || letter.null == null) && (letter.end == false || letter.end == null)){
 			endMissing.push(letter)
 		} else {
 			startMissing.push(letter);
