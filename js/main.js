@@ -102,7 +102,7 @@ function updatePage() {
 
   	// change letterrs to current letter
 	document.getElementById("main-letter").innerHTML =
-		letters[currentLetterPosition];
+		wordLibrary[letters[currentLetterPosition]].display;
 
 	// determine how many cards available
 /*	let emptyWords = wordLibrary[letters[currentLetterPosition]].words.filter(word => word == '').length
@@ -238,7 +238,7 @@ function renderPagination() {
 		var progressBlock = document.createElement("li");
 		// link that contains the letter
 		var pageNumber = document.createElement("a");
-		pageNumber.innerHTML = letter;
+		pageNumber.innerHTML = wordLibrary[letter].display;
 		pageNumber.setAttribute("class", "page-link");
 		pageNumber.setAttribute("href", "#");
 
