@@ -17,6 +17,9 @@ Prageeth Jayathissa
 Date:
 November 2021
 
+Updated:
+July 2022
+
 */
 
 // This number will itterate through the letters
@@ -67,7 +70,10 @@ function initiatePage() {
 	};
 
 	document.getElementById("submit-button").onclick = function() {
-		generateOutput();
+		if (checkAllSelected()) {
+			generateOutput();
+		}
+		
 	};
 
 	document.getElementById("go-back-button").onclick = function() {
