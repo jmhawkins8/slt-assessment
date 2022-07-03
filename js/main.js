@@ -120,6 +120,16 @@ function updatePage() {
 	// modify video to Library
 	let videoIframe = document.getElementById("vidlink");
 	videoIframe.src = wordLibrary[letters[currentLetterPosition]].videoLink;
+
+	// show/hide next button when at the final element
+	if(currentLetterPosition + 1 == letters.length) {
+		// hide next button as we are at the end
+		document.getElementById("next-button").style.display = 'none'
+	} else {
+		// show next button 
+		document.getElementById("next-button").style.display = ''
+	}
+	
 		
 	// Update progress bar at the bottom
 	renderPagination();
@@ -225,11 +235,12 @@ function renderPagination() {
 		}
 
 		// navigate to the clicked letter
+		// disabled the checkAllSelected for now
 		pageNumber.onclick = function() {
-			if(checkAllSelected()){
+			//if(checkAllSelected()){
 				currentLetterPosition = key;
 				updatePage();
-			}
+			//}
 		};
 		progressBlock.appendChild(pageNumber);
 		progressBar.appendChild(progressBlock);
@@ -309,31 +320,31 @@ function generateOutput() {
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const availableSoundsArray = availableSounds
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const endMissingArray = endMissing
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const notAvailableArray = notAvailable
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const notAssessedArray = notAssessed
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	// make string the inner html to print
 	document.getElementById("start-missing").innerHTML = startMissingArray;
