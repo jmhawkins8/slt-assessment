@@ -193,7 +193,7 @@ const wordLibrary = {
 	},
 	SK: {
 		words: ["<u><b>Sk</b></u>ate", "", ""],
-		videoLink: "https://www.youtube.com/embed/VOENA0wtBOk",
+		videoLink: "https://www.youtube.com/embed/jz6I7ETnR-0",
 	},
 	SKW: {
 		words: ["<u><b>Squ</b></u>are", "", ""],
