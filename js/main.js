@@ -79,8 +79,6 @@ function initiatePage() {
 }
 
 function createCard(position){
-	console.log(Results[currentLetterPosition])
-	console.log(document.getElementById('card-'+position))
 	if (Results[currentLetterPosition][position] == null) {
 		document.getElementById('card-'+position).style.display = 'none'
 	} else {
@@ -148,6 +146,16 @@ function updatePage() {
 function checkAllSelected() {
 	// reader be warned, this is a mind-fuck
 
+	// Is the sound test available? returns true if sound test is available
+	const soundTestAvailable = (
+		(Results[currentLetterPosition].start === false ||
+			Results[currentLetterPosition].start === null) &&
+		(Results[currentLetterPosition].middle === false ||
+			Results[currentLetterPosition].middle === null) &&
+		(Results[currentLetterPosition].end === false ||
+			Results[currentLetterPosition].end === null)
+	)
+
 	// create a size 4 array of trues if unselected
 	let resultsSelected = [
 		Results[currentLetterPosition].start === 'notSelected',
@@ -158,11 +166,17 @@ function checkAllSelected() {
 
 	let alerts = document.querySelectorAll(".button-validation")
 
+	// toggle the alerts if selected
 	alerts.forEach((alert, key) => {
-		resultsSelected[key] ? alert.style.display = 'block' : alert.style.display = 'none'
+		// if sound test is not available, don't show alert on sound
+		if (alert.id == 'validation-sound' && !soundTestAvailable) {
+			alert.style.display = 'none'
+		} else {
+			resultsSelected[key] ? alert.style.display = 'block' : alert.style.display = 'none'
+		}
+		
 	})
 	
-
 	// Are start, middle and end radios selected? returns true if all three are selected
 	const picturesSelected = !(
 		Results[currentLetterPosition].start === 'notSelected' ||
@@ -170,12 +184,7 @@ function checkAllSelected() {
 		Results[currentLetterPosition].end === 'notSelected'
 	)
 
-	// Is the sound test available? returns true if sound test is available
-	const soundTestAvailable = (
-		Results[currentLetterPosition].start === false &&
-		Results[currentLetterPosition].middle === false &&
-		Results[currentLetterPosition].end === false
-	)
+
 
 	// if sound test not available, or available and selected we want it to be true
 	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != 'notSelected')
