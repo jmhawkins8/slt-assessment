@@ -17,6 +17,9 @@ Prageeth Jayathissa
 Date:
 November 2021
 
+Updated:
+July 2022
+
 */
 
 // This number will itterate through the letters
@@ -67,7 +70,10 @@ function initiatePage() {
 	};
 
 	document.getElementById("submit-button").onclick = function() {
-		generateOutput();
+		if (checkAllSelected()) {
+			generateOutput();
+		}
+		
 	};
 
 	document.getElementById("go-back-button").onclick = function() {
@@ -79,8 +85,6 @@ function initiatePage() {
 }
 
 function createCard(position){
-	console.log(Results[currentLetterPosition])
-	console.log(document.getElementById('card-'+position))
 	if (Results[currentLetterPosition][position] == null) {
 		document.getElementById('card-'+position).style.display = 'none'
 	} else {
@@ -120,6 +124,16 @@ function updatePage() {
 	// modify video to Library
 	let videoIframe = document.getElementById("vidlink");
 	videoIframe.src = wordLibrary[letters[currentLetterPosition]].videoLink;
+
+	// show/hide next button when at the final element
+	if(currentLetterPosition + 1 == letters.length) {
+		// hide next button as we are at the end
+		document.getElementById("next-button").style.display = 'none'
+	} else {
+		// show next button 
+		document.getElementById("next-button").style.display = ''
+	}
+	
 		
 	// Update progress bar at the bottom
 	renderPagination();
@@ -138,6 +152,16 @@ function updatePage() {
 function checkAllSelected() {
 	// reader be warned, this is a mind-fuck
 
+	// Is the sound test available? returns true if sound test is available
+	const soundTestAvailable = (
+		(Results[currentLetterPosition].start === false ||
+			Results[currentLetterPosition].start === null) &&
+		(Results[currentLetterPosition].middle === false ||
+			Results[currentLetterPosition].middle === null) &&
+		(Results[currentLetterPosition].end === false ||
+			Results[currentLetterPosition].end === null)
+	)
+
 	// create a size 4 array of trues if unselected
 	let resultsSelected = [
 		Results[currentLetterPosition].start === 'notSelected',
@@ -148,11 +172,17 @@ function checkAllSelected() {
 
 	let alerts = document.querySelectorAll(".button-validation")
 
+	// toggle the alerts if selected
 	alerts.forEach((alert, key) => {
-		resultsSelected[key] ? alert.style.display = 'block' : alert.style.display = 'none'
+		// if sound test is not available, don't show alert on sound
+		if (alert.id == 'validation-sound' && !soundTestAvailable) {
+			alert.style.display = 'none'
+		} else {
+			resultsSelected[key] ? alert.style.display = 'block' : alert.style.display = 'none'
+		}
+		
 	})
 	
-
 	// Are start, middle and end radios selected? returns true if all three are selected
 	const picturesSelected = !(
 		Results[currentLetterPosition].start === 'notSelected' ||
@@ -160,12 +190,7 @@ function checkAllSelected() {
 		Results[currentLetterPosition].end === 'notSelected'
 	)
 
-	// Is the sound test available? returns true if sound test is available
-	const soundTestAvailable = (
-		Results[currentLetterPosition].start === false &&
-		Results[currentLetterPosition].middle === false &&
-		Results[currentLetterPosition].end === false
-	)
+
 
 	// if sound test not available, or available and selected we want it to be true
 	soundTestSelected = (!soundTestAvailable || Results[currentLetterPosition].sound != 'notSelected')
@@ -225,11 +250,12 @@ function renderPagination() {
 		}
 
 		// navigate to the clicked letter
+		// disabled the checkAllSelected for now
 		pageNumber.onclick = function() {
-			if(checkAllSelected()){
+			//if(checkAllSelected()){
 				currentLetterPosition = key;
 				updatePage();
-			}
+			//}
 		};
 		progressBlock.appendChild(pageNumber);
 		progressBar.appendChild(progressBlock);
@@ -309,31 +335,31 @@ function generateOutput() {
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const availableSoundsArray = availableSounds
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const endMissingArray = endMissing
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const notAvailableArray = notAvailable
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	const notAssessedArray = notAssessed
 		.map((sound) => {
 			return sound.letter;
 		})
-		.join(",");
+		.join(", ");
 
 	// make string the inner html to print
 	document.getElementById("start-missing").innerHTML = startMissingArray;
