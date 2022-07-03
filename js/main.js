@@ -333,31 +333,31 @@ function generateOutput() {
 	// Convert array of letters to a single string joined by commas (,)
 	const startMissingArray = startMissing
 		.map((sound) => {
-			return sound.letter;
+			return wordLibrary[sound.letter].display;
 		})
 		.join(", ");
 
 	const availableSoundsArray = availableSounds
 		.map((sound) => {
-			return sound.letter;
+			return wordLibrary[sound.letter].display;
 		})
 		.join(", ");
 
 	const endMissingArray = endMissing
 		.map((sound) => {
-			return sound.letter;
+			return wordLibrary[sound.letter].display;
 		})
 		.join(", ");
 
 	const notAvailableArray = notAvailable
 		.map((sound) => {
-			return sound.letter;
+			return wordLibrary[sound.letter].display;
 		})
 		.join(", ");
 
 	const notAssessedArray = notAssessed
 		.map((sound) => {
-			return sound.letter;
+			return wordLibrary[sound.letter].display;
 		})
 		.join(", ");
 
